@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	div.dice{
+		float:left;
+		width:40px;
+		background:#F5F5F5;
+		border:#999 1px solid;
+		padding:10px;
+		font-size:30px;
+		text-align:center;
+		margin:5px;
+	}
+	div.outcome{
+		position: absolute;
+		width:100px;
+		text-align:center;
+		font-size:24px;
+		left: 102px;
+	}
+	.button {
+		width:100px;
+		font-size: 24px;
+		position: absolute;
+		left: 102px;
+		top: 100px;
+	}
+	</style>
+</head>
+
+<body>
+
+	<div id="die1" class="dice">0</div>
+	<div id="die2" class="dice">0</div>
+	<div id="die3" class="dice">0</div>
+	<div id="die4" class="dice">0</div>
+	
+	<div>
+	<button class="button" onclick="rollDice()">Roll</button>
+	</div>
+
+	<div id="pair1" class="outcome" style="top: 156px;">0 and 0</div>
+	<div id="pair2" class="outcome" style="top: 186px;">0 and 0</div>
+	<div id="pair3" class="outcome" style="top: 216px;">0 and 0</div>
+
+	<script>
+	function rollDice() {
+		 var die1 = document.getElementById("die1");
+		 var die2 = document.getElementById("die2");
+		 var die3 = document.getElementById("die3");
+		 var die4 = document.getElementById("die4");
+
+		 var d1 = Math.floor(Math.random()*6)+1;
+		 var d2 = Math.floor(Math.random()*6)+1;
+		 var d3 = Math.floor(Math.random()*6)+1;
+		 var d4 = Math.floor(Math.random()*6)+1;
+
+		 die1.innerHTML = d1;
+		 die2.innerHTML = d2;
+		 die3.innerHTML = d3;
+		 die4.innerHTML = d4;
+
+		 pair1.innerHTML = (d1+d2)+" and "+(d3+d4);
+		 pair2.innerHTML = (d1+d3)+" and "+(d2+d4);
+		 pair3.innerHTML = (d1+d4)+" and "+(d2+d3);
+	}
+	</script>
+
+</body>
+
+</html>
