@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+
+	div.square{
+		position: absolute;
+		top:35%;
+		width:30%;
+		height:30%;
+		background:#ADD8E6;
+		border:#999 1px solid;
+		font-size:40px;
+		text-align:center;
+		padding:0px;
+		margin:0px;
+	}
+
+	div.score{
+		position: absolute;
+		top:10%;
+		left: 25%;
+		width:50%;
+		height:20%;
+		text-align:center;
+		font-size:60px;
+	}
+
+	.button {
+		width:20%;
+		height:10%;
+		font-size: 24px;
+		position: absolute;
+		left: 40%;
+		top: 85%;
+	}
+	</style>
+</head>
+
+<body>
+
+	<div id="scr" class="score"></div>
+
+	<div id="left" class="square" style="left: 10%;"></div>
+	<div id="right" class="square" style="left: 60%;"></div>
+
+	<div>
+	<button class="button" onclick="displayResult()">Exit</button>
+	</div>
+
+
+	<script>
+		// set the probability that the right button is correct
+		let p = 0.8; 
+
+		// save the total number of left and right clicks here
+		let left_click_count = 0;
+		let right_click_count = 0;
+
+		// keep track of total correct answers here
+		let score = 0;
+
+		// when exit button is clicked, set to FALSE to disable the other buttons
+		let experiment_on = "TRUE";
+
+		// get the div elements you want to add an event listener to
+		const leftdiv = document.querySelector('#left');
+		const rightdiv = document.querySelector('#right');
+
+		// add a click event listener to the left div
+		leftdiv.addEventListener('click', function() { 
+			if (experiment_on == "TRUE") {
+				left_click_count = left_click_count+1;
+				//console.log('The left button has been clicked '+left_click_count+' times'); 
+				outcome = getRandom(p);
+				if (outcome == 0) {
+					console.log("CORRECT"); 
+					flashColor('green');
+					score = score+1;
+				} else { 
+					console.log("WRONG"); 
+					flashColor('red');
+				};
+			};
+		});
+		
+		// add a click event listener to the right div
+		rightdiv.addEventListener('click', function() { 
+			if (experiment_on == "TRUE") {
+				right_click_count = right_click_count+1;
+				//console.log('The right button has been clicked '+right_click_count+' times');
+				outcome = getRandom(p);
+				if (outcome == 1) {
+					console.log("CORRECT");
+					flashColor('green');
+					score = score+1;
+				} else { 
+					console.log("WRONG");
+					flashColor('red'); 
+				};
+			};
+		});
+
+		function getRandom(p) {
+			var num = Math.random();
+			if(num < p) return 1;
+			else return 0;
+		}
+
+		function flashColor(color) {
+			document.body.style.background = color;
+			setTimeout(function(){document.body.style.background = 'white';}, 500)
+		}
+
+		function displayResult() {
+			// disable all of the buttons
+			experiment_on = "FALSE";
+
+			// calculate the percentage of clicks made on each button
+			let total_clicks = left_click_count+right_click_count
+			console.log("total clicks are "+total_clicks)
+			let right_chosen = Math.round(right_click_count/total_clicks*100);
+			let left_chosen = Math.round(left_click_count/total_clicks*100);
+			let left_chosen_text = left_chosen+"% clicked";
+			let right_chosen_text = right_chosen+"% clicked";
+
+			// show the participant's click rate per button on the button
+			document.getElementById("left").innerHTML = left_chosen_text;
+			document.getElementById("right").innerHTML = right_chosen_text;
+
+			// show the participant's score as percentage correct
+			let score_percent = Math.round(score/total_clicks*100)
+			let score_text = score_percent+"% correct"
+			document.getElementById("scr").innerHTML = score_text;
+			console.log("Your score is "+score);
+
+			// show 
+
+		}
+
+	</script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
