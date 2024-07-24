@@ -67,6 +67,9 @@
 		const leftdiv = document.querySelector('#left');
 		const rightdiv = document.querySelector('#right');
 
+		const audio_correct = new Audio("https://vanessaferdinand.com/assets/ding.mp3");
+		const audio_wrong = new Audio("https://vanessaferdinand.com/assets/womp.mp3");
+
 		// add a click event listener to the left div
 		leftdiv.addEventListener('click', function() { 
 			if (experiment_on == "TRUE") {
@@ -77,9 +80,11 @@
 					console.log("CORRECT"); 
 					flashColor('green');
 					score = score+1;
+					audio_correct.play();
 				} else { 
 					console.log("WRONG"); 
 					flashColor('red');
+					audio_wrong.play();
 				};
 			};
 		});
@@ -94,9 +99,11 @@
 					console.log("CORRECT");
 					flashColor('green');
 					score = score+1;
+					audio_correct.play();
 				} else { 
 					console.log("WRONG");
-					flashColor('red'); 
+					flashColor('red');
+					audio_wrong.play();
 				};
 			};
 		});
@@ -133,20 +140,9 @@
 			let score_text = score_percent+"% correct"
 			document.getElementById("scr").innerHTML = score_text;
 			console.log("Your score is "+score);
-
-			// show 
-
 		}
 
 	</script>
-
-
-
-
-
-
-
-
 
 </body>
 
