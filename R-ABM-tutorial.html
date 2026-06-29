@@ -1628,8 +1628,8 @@ getting oriented in RStudio: <br> <a href="https://datacarpentry.github.io/R-eco
 <h3>Storing information</h3>
 <p>A <strong>variable</strong> is a named container that holds a value.
 You create a variable by choosing a name and assigning a value to it
-with the arrow operator <code>&lt;-</code>. In agent-based modelling,
-all of the information about your agents and their environment will be
+with the arrow operator <code>&lt;-</code>. In agent-based modeling, all
+of the information about your agents and their environment will be
 stored in variables.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># create a variable named &quot;population size&quot; </span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co"># and assign it the value 10</span></span>
@@ -1689,19 +1689,19 @@ built-in function called “combine”, or <code>list()</code>.</p>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>subpop_sizes</span></code></pre></div>
 <pre><code>#&gt; [1] 10 53 18 22  9</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># create a list of species names in a community</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>community <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Parus major&quot;</span>, <span class="st">&quot;Fringilla coelebs&quot;</span>, <span class="st">&quot;Erithacus rubecula&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>community <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Psophodes olivaceus&quot;</span>, <span class="st">&quot;Eopsaltria australis&quot;</span>, <span class="st">&quot;Dacelo novaeguineae&quot;</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>community</span></code></pre></div>
-<pre><code>#&gt; [1] &quot;Parus major&quot;        &quot;Fringilla coelebs&quot;  &quot;Erithacus rubecula&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;Psophodes olivaceus&quot;  &quot;Eopsaltria australis&quot; &quot;Dacelo novaeguineae&quot;</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># create a list of agents who survived at the end of the day</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>survival <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>survival</span></code></pre></div>
 <pre><code>#&gt; [1]  TRUE FALSE  TRUE  TRUE FALSE  TRUE</code></pre>
 <p>R has another built-in function called <code>length()</code> which
-tells you how many elements are in the list. Here it tells us there are
-3 species in <code>community</code>.</p>
+tells you how many elements are in a list. Here it tells us there are 3
+species in <code>community</code>.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">length</span>(community)</span></code></pre></div>
 <pre><code>#&gt; [1] 3</code></pre>
-<p>In agent-based modelling, it is common to create a vector with one
+<p>In agent-based modeling, it is common to create a vector with one
 slot per agent in the population and store the agents’ values of a
 particular attribute there. For example, in a population with 5 agents,
 we can create lists of length 5 to store state variables for each
@@ -1731,6 +1731,14 @@ dominance rank of 5.</p>
 <pre><code>#&gt; [1] 2.9</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">length</span>(foraging_bouts)  <span class="co"># how many bouts were recorded</span></span></code></pre></div>
 <pre><code>#&gt; [1] 8</code></pre>
+<p>Last, here’s a useful shortcut for making a list that is a sequence
+of consecutive integers. Use a colon <code>:</code> between the starting
+and stopping values you want. R will fill in the sequence for you.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># use this colon notation to make a numeric sequence</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="dv">18</span><span class="sc">:</span><span class="dv">22</span></span></code></pre></div>
+<pre><code>#&gt; [1] 18 19 20 21 22</code></pre>
 <blockquote>
 <p><strong>Key idea:</strong> Lists let you store sets of values
 together, like each agent’s age or each agent’s energy level.</p>
@@ -1744,15 +1752,15 @@ together, like each agent’s age or each agent’s energy level.</p>
 <h3>2x2 collections of values</h3>
 <p>A <strong>matrix</strong> is a two-dimensional data structure
 arranged in rows and columns. It looks like a grid of values. In
-agent-based modelling, matrices are useful for storing values that a
-pair of agents share, like a friendship score. Social networks can
-easily be created from matrices. Matrices are also used to represent the
-position of agents on a grid in for agent-based models that include
-spatial location.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># create a 3x3 matrix from a list of 9 values</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(v, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>my_matrix</span></code></pre></div>
+agent-based modeling, matrices are useful for storing values that a pair
+of agents share, like a friendship score. Social networks can easily be
+created from matrices. Matrices are also used to represent the position
+of agents on a grid in for agent-based models that include spatial
+location.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># create a 3x3 matrix from a list of 9 values</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(v, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>my_matrix</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2] [,3]
 #&gt; [1,]    1    4    7
 #&gt; [2,]    2    5    8
@@ -1762,9 +1770,9 @@ that occurred between 4 agents in a population. The rows represent the
 agent that was doing the grooming and the columns represent the agent
 that was receiving the grooming. The diagonal values are all zero
 because the agents never groomed themselves.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">41</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">21</span>,<span class="dv">11</span>,<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">15</span>,<span class="dv">18</span>,<span class="dv">0</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>grooming_events <span class="ot">&lt;-</span> <span class="fu">matrix</span>(x, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>grooming_events</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">41</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">21</span>,<span class="dv">11</span>,<span class="dv">0</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">15</span>,<span class="dv">18</span>,<span class="dv">0</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>grooming_events <span class="ot">&lt;-</span> <span class="fu">matrix</span>(x, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>grooming_events</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2] [,3] [,4]
 #&gt; [1,]    0   41   21    8
 #&gt; [2,]    3    0   11   15
@@ -1777,11 +1785,11 @@ a LOT but agent 2 hardly ever groomed it back. 😭</p>
 <p>Here’s an example matrix that tells you the position of 3 agents in a
 5 by 5 world in an x-y coordinate system. Let’s say the rows correspond
 to the x coordinate and the columns correspond to the y coordinate.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>grid[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># ignore these three lines until you get to the Indexing section</span></span>
-<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>grid[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>grid[<span class="dv">4</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>grid</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>grid[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># ignore these three lines until you get to the Indexing section</span></span>
+<span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>grid[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>grid[<span class="dv">4</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb44-5"><a href="#cb44-5" tabindex="-1"></a>grid</span></code></pre></div>
 <pre><code>#&gt;      [,1] [,2] [,3] [,4] [,5]
 #&gt; [1,]    0    0    0    0    0
 #&gt; [2,]    0    1    3    0    0
@@ -1808,31 +1816,31 @@ grid.</p>
 reference to the position of the element you want. For example,
 <code>[1]</code> would give you the first element in a list and
 <code>[99]</code> would give you the 99th element.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># here&#39;s that age vector again</span></span>
-<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">25</span>,<span class="dv">32</span>,<span class="dv">19</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="co"># get the first element</span></span>
-<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>age[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co"># here&#39;s that age vector again</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">25</span>,<span class="dv">32</span>,<span class="dv">19</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a><span class="co"># get the first element</span></span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>age[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 18</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># get the fifth element</span></span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>age[<span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># get the fifth element</span></span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>age[<span class="dv">5</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 19</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="co"># get elements 2 through 4 (called a &quot;slice&quot;)</span></span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>age[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co"># get elements 2 through 4 (called a &quot;slice&quot;)</span></span>
+<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>age[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 21 25 32</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># get elements 1, 3, and 5 (non-consecutive)</span></span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>age[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># get elements 1, 3, and 5 (non-consecutive)</span></span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>age[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)]</span></code></pre></div>
 <pre><code>#&gt; [1] 18 25 19</code></pre>
 <p>You can also use a numeric variable as an index:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co"># get the age of agent 2</span></span>
-<span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a>agent <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb50-3"><a href="#cb50-3" tabindex="-1"></a>age[agent]</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co"># get the age of agent 2</span></span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>agent <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>age[agent]</span></code></pre></div>
 <pre><code>#&gt; [1] 21</code></pre>
 <p>You can replace elements in a list using indexing:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="co"># it&#39;s agent 2&#39;s birthday, let&#39;s update their age!</span></span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a><span class="co"># get the age of agent 2, add 1 year to it, and save it back to the age vector</span></span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>age[<span class="dv">2</span>] <span class="ot">&lt;-</span> age[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>age</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="co"># it&#39;s agent 2&#39;s birthday, let&#39;s update their age!</span></span>
+<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a><span class="co"># get the age of agent 2, add 1 year to it, and save it back to the age vector</span></span>
+<span id="cb56-3"><a href="#cb56-3" tabindex="-1"></a>age[<span class="dv">2</span>] <span class="ot">&lt;-</span> age[<span class="dv">2</span>]<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb56-4"><a href="#cb56-4" tabindex="-1"></a>age</span></code></pre></div>
 <pre><code>#&gt; [1] 18 22 25 32 19</code></pre>
 </div>
 <div id="accessing-elements-of-a-matrix" class="section level3">
@@ -1841,22 +1849,22 @@ reference to the position of the element you want. For example,
 list, you just need to include two numbers in the brackets, instead of
 one. The convention for indexing matrices is <code>[row,col]</code>.
 Always say the row first and the column second.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 1 and column 2</span></span>
-<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>my_matrix[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 1 and column 2</span></span>
+<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>my_matrix[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 4</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 3 and column 2</span></span>
-<span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>my_matrix[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 3 and column 2</span></span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>my_matrix[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 6</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 2 and column 2</span></span>
-<span id="cb58-2"><a href="#cb58-2" tabindex="-1"></a>my_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="co"># get the matrix entry for row 2 and column 2</span></span>
+<span id="cb62-2"><a href="#cb62-2" tabindex="-1"></a>my_matrix[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 5</code></pre>
 <blockquote>
 <p><strong>Key idea:</strong> Imagine each position in a vector
 represents one individual in your population. Indexing vectors lets you
-update the state of specific individuals — for example, marking an
-animal as dead, or changing its energy level after a foraging event.
-Indexing matrices lets you update the social relationship between agents
-or each agent’s position on a grid.</p>
+update the state of specific individuals, for example, marking an animal
+as dead, or changing its energy level after a foraging event. Indexing
+matrices lets you update the social relationship between agents or each
+agent’s position on a grid.</p>
 </blockquote>
 <hr />
 </div>
@@ -1870,35 +1878,36 @@ or each agent’s position on a grid.</p>
 They are also what you’ll use to program the decision-making rules that
 you give the agents you create.</p>
 <p>You can assign the TRUE/FALSE value directly:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a>is_dominant   <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>has_territory <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a>is_dominant</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a>is_dominant   <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>has_territory <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a>is_dominant</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a>has_territory</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a>has_territory</span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <p>Or you can create the TRUE/FALSE value with operators:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="co"># first, create a variable called &quot;age&quot; and assign it the value 12</span></span>
-<span id="cb64-2"><a href="#cb64-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb64-3"><a href="#cb64-3" tabindex="-1"></a></span>
-<span id="cb64-4"><a href="#cb64-4" tabindex="-1"></a><span class="co"># check if age is above 10</span></span>
-<span id="cb64-5"><a href="#cb64-5" tabindex="-1"></a>age <span class="sc">&gt;</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="co"># first, create a variable called &quot;age&quot; and assign it the value 12</span></span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a><span class="co"># next, create the TRUE/FALSE value by using an operator:</span></span>
+<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a><span class="co"># check if age is above 10</span></span>
+<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a>age <span class="sc">&gt;</span> <span class="dv">10</span></span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="co"># check if age is less than or equal to 10</span></span>
-<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>age <span class="sc">&lt;=</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="co"># check if age is less than or equal to 10</span></span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>age <span class="sc">&lt;=</span> <span class="dv">10</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
 <p>When you create a TRUE/FALSE value with operators, you can directly
 save it to a variable:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="co"># save the output of a logical operator to a variable called &quot;is_dead&quot;</span></span>
-<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a></span>
-<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a><span class="co"># give the agent a body condition</span></span>
-<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a>body_condition <span class="ot">&lt;-</span> <span class="fl">0.1</span>  </span>
-<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a><span class="co"># if body condition is under 0.2, the agent dies</span></span>
-<span id="cb68-7"><a href="#cb68-7" tabindex="-1"></a>is_dead <span class="ot">&lt;-</span> body_condition <span class="sc">&lt;</span> <span class="fl">0.2</span>  </span>
-<span id="cb68-8"><a href="#cb68-8" tabindex="-1"></a></span>
-<span id="cb68-9"><a href="#cb68-9" tabindex="-1"></a><span class="co"># check the value of this variable</span></span>
-<span id="cb68-10"><a href="#cb68-10" tabindex="-1"></a>is_dead  <span class="co"># is_dead is now equal to TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="co"># save the output of a logical operator to a variable called &quot;is_dead&quot;</span></span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a><span class="co"># give the agent a body condition</span></span>
+<span id="cb72-4"><a href="#cb72-4" tabindex="-1"></a>body_condition <span class="ot">&lt;-</span> <span class="fl">0.1</span>  </span>
+<span id="cb72-5"><a href="#cb72-5" tabindex="-1"></a></span>
+<span id="cb72-6"><a href="#cb72-6" tabindex="-1"></a><span class="co"># if body condition is under 0.2, the agent dies</span></span>
+<span id="cb72-7"><a href="#cb72-7" tabindex="-1"></a>is_dead <span class="ot">&lt;-</span> body_condition <span class="sc">&lt;</span> <span class="fl">0.2</span>  </span>
+<span id="cb72-8"><a href="#cb72-8" tabindex="-1"></a></span>
+<span id="cb72-9"><a href="#cb72-9" tabindex="-1"></a><span class="co"># check the value of this variable</span></span>
+<span id="cb72-10"><a href="#cb72-10" tabindex="-1"></a>is_dead</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>You create logical values by making <strong>comparisons</strong>
 using relational operators:</p>
@@ -1940,51 +1949,51 @@ using relational operators:</p>
 special symbols: <code>&amp;</code> and <code>|</code></p>
 <p><code>&amp;</code> means AND</p>
 <p><code>|</code> means OR</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a>parent1 <span class="ot">&lt;-</span> <span class="st">&quot;here&quot;</span></span>
-<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>parent2 <span class="ot">&lt;-</span> <span class="st">&quot;not here&quot;</span></span>
-<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a></span>
-<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a><span class="co"># are both of the agent&#39;s parents here?  nope</span></span>
-<span id="cb70-5"><a href="#cb70-5" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">&amp;</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a>parent1 <span class="ot">&lt;-</span> <span class="st">&quot;here&quot;</span></span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a>parent2 <span class="ot">&lt;-</span> <span class="st">&quot;not here&quot;</span></span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a><span class="co"># are both of the agent&#39;s parents here?  nope</span></span>
+<span id="cb74-5"><a href="#cb74-5" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">&amp;</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="co"># is at least one of agent&#39;s parents here?  yep</span></span>
-<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a><span class="co"># is at least one of agent&#39;s parents here?  yep</span></span>
+<span id="cb76-2"><a href="#cb76-2" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span></span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="co"># is at least one of agent&#39;s parents here </span></span>
-<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a><span class="co"># and the agent is under 10 days old?</span></span>
-<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a>age_in_days <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a>(parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span>) <span class="sc">&amp;</span> age_in_days <span class="sc">&lt;</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="co"># is at least one of agent&#39;s parents here </span></span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a><span class="co"># and the agent is under 10 days old?</span></span>
+<span id="cb78-3"><a href="#cb78-3" tabindex="-1"></a>age_in_days <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a>(parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span>) <span class="sc">&amp;</span> age_in_days <span class="sc">&lt;</span> <span class="dv">10</span></span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>Conditions within parentheses are evaluated first. Compare the
 previous line to the one below. The one below asks “is parent 1 here
 -OR- is parent2 here and the agent is under 10 days old?”</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> (parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">&amp;</span> age_in_days <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a>parent1 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">|</span> (parent2 <span class="sc">==</span> <span class="st">&quot;here&quot;</span> <span class="sc">&amp;</span> age_in_days <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 <p>Let’s combine what we learned in this section on Logicals with what
 we learned in the section about Indexing. <strong>Logical
 indexing</strong> lets you select elements based on a logical condition,
 instead of using their numeric position in the list. First you create a
 logical vector for your list, then you use it as your index:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="co"># here&#39;s that foraging bouts vector again</span></span>
-<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a>foraging_bouts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.2</span>, <span class="fl">7.8</span>, <span class="fl">3.1</span>, <span class="fl">9.4</span>, <span class="fl">5.5</span>, <span class="fl">2.9</span>, <span class="fl">11.0</span>, <span class="fl">6.3</span>)</span>
-<span id="cb78-3"><a href="#cb78-3" tabindex="-1"></a></span>
-<span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a><span class="co"># first we create a logical vector showing</span></span>
-<span id="cb78-5"><a href="#cb78-5" tabindex="-1"></a><span class="co"># which foraging bouts were longer than 6 minutes</span></span>
-<span id="cb78-6"><a href="#cb78-6" tabindex="-1"></a>long_bouts <span class="ot">&lt;-</span> foraging_bouts <span class="sc">&gt;</span> <span class="dv">6</span></span>
-<span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a>long_bouts  <span class="co"># a logical vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="co"># here&#39;s that foraging bouts vector again</span></span>
+<span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a>foraging_bouts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.2</span>, <span class="fl">7.8</span>, <span class="fl">3.1</span>, <span class="fl">9.4</span>, <span class="fl">5.5</span>, <span class="fl">2.9</span>, <span class="fl">11.0</span>, <span class="fl">6.3</span>)</span>
+<span id="cb82-3"><a href="#cb82-3" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="#cb82-4" tabindex="-1"></a><span class="co"># first we create a logical vector showing</span></span>
+<span id="cb82-5"><a href="#cb82-5" tabindex="-1"></a><span class="co"># which foraging bouts were longer than 6 minutes</span></span>
+<span id="cb82-6"><a href="#cb82-6" tabindex="-1"></a>long_bouts <span class="ot">&lt;-</span> foraging_bouts <span class="sc">&gt;</span> <span class="dv">6</span></span>
+<span id="cb82-7"><a href="#cb82-7" tabindex="-1"></a>long_bouts  <span class="co"># a logical vector</span></span></code></pre></div>
 <pre><code>#&gt; [1] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" tabindex="-1"></a><span class="co"># then we use that logical vector as an index</span></span>
-<span id="cb80-2"><a href="#cb80-2" tabindex="-1"></a><span class="co"># to extract the foraging bouts that were longer than 6 minutes</span></span>
-<span id="cb80-3"><a href="#cb80-3" tabindex="-1"></a>foraging_bouts[long_bouts]</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a><span class="co"># then we use that logical vector as an index</span></span>
+<span id="cb84-2"><a href="#cb84-2" tabindex="-1"></a><span class="co"># to extract the foraging bouts that were longer than 6 minutes</span></span>
+<span id="cb84-3"><a href="#cb84-3" tabindex="-1"></a>foraging_bouts[long_bouts]</span></code></pre></div>
 <pre><code>#&gt; [1]  7.8  9.4 11.0  6.3</code></pre>
 <p>Here how to do those two operations in one line of code:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" tabindex="-1"></a><span class="co"># logical indexing in one step</span></span>
-<span id="cb82-2"><a href="#cb82-2" tabindex="-1"></a>foraging_bouts[foraging_bouts <span class="sc">&gt;</span> <span class="dv">6</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a><span class="co"># logical indexing in one step</span></span>
+<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a>foraging_bouts[foraging_bouts <span class="sc">&gt;</span> <span class="dv">6</span>]</span></code></pre></div>
 <pre><code>#&gt; [1]  7.8  9.4 11.0  6.3</code></pre>
 <blockquote>
 <p><strong>Key idea</strong> Logical operations allow agents to evaluate
 their inner states, their environment, and the behaviors of other
-agents. Evalutations like these are the core computations behind
-decision making in agent-based models.</p>
+agents. You’ll use evaluations like these when you code up behavioral
+rules or decision-making rules for your agents to follow.</p>
 </blockquote>
 <hr />
 </div>
@@ -1998,11 +2007,11 @@ condition is TRUE</strong>. This is how you give agents decision rules
 in a model: you give them rules to follow if certain conditions are met.
 Here’s an example of a complete decision rule: <em>IF my energy levels
 are below 0.5, THEN I should forage.</em></p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" tabindex="-1"></a>energy_level <span class="ot">&lt;-</span> <span class="fl">0.42</span>   <span class="co"># current energy reserves (ranging from 0 to 1)</span></span>
-<span id="cb84-2"><a href="#cb84-2" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="#cb84-3" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.5</span>) {</span>
-<span id="cb84-4"><a href="#cb84-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Energy is low — the animal should forage.&quot;</span>)</span>
-<span id="cb84-5"><a href="#cb84-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>energy_level <span class="ot">&lt;-</span> <span class="fl">0.42</span>   <span class="co"># current energy reserves (ranging from 0 to 1)</span></span>
+<span id="cb88-2"><a href="#cb88-2" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="#cb88-3" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.5</span>) {</span>
+<span id="cb88-4"><a href="#cb88-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;Energy is low — the animal should forage.&quot;</span>)</span>
+<span id="cb88-5"><a href="#cb88-5" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;Energy is low — the animal should forage.&quot;</code></pre>
 <p>The code inside the brackets <code>{ }</code> is called a
 <strong>block</strong>. It can contain as many lines as you need. The
@@ -2010,44 +2019,44 @@ code here is indented to help you see which lines are inside of a set of
 brackets.</p>
 <p>Add <code>else</code> to specify what happens when the condition is
 FALSE:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a>energy_level <span class="ot">&lt;-</span> <span class="fl">0.75</span></span>
-<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a></span>
-<span id="cb86-3"><a href="#cb86-3" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.5</span>) {</span>
-<span id="cb86-4"><a href="#cb86-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Energy is low — forage.&quot;</span>)</span>
-<span id="cb86-5"><a href="#cb86-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb86-6"><a href="#cb86-6" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Energy is sufficient — the animal can rest or display.&quot;</span>)</span>
-<span id="cb86-7"><a href="#cb86-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a>energy_level <span class="ot">&lt;-</span> <span class="fl">0.75</span></span>
+<span id="cb90-2"><a href="#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.5</span>) {</span>
+<span id="cb90-4"><a href="#cb90-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Energy is low — forage.&quot;</span>)</span>
+<span id="cb90-5"><a href="#cb90-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb90-6"><a href="#cb90-6" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Energy is sufficient — the animal can rest or display.&quot;</span>)</span>
+<span id="cb90-7"><a href="#cb90-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;Energy is sufficient — the animal can rest or display.&quot;</code></pre>
-<p>You can chain multiple conditions with <code>else if</code>. In the
-example below,</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a>dominance_rank <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb88-2"><a href="#cb88-2" tabindex="-1"></a>energy_level   <span class="ot">&lt;-</span> <span class="fl">0.35</span></span>
-<span id="cb88-3"><a href="#cb88-3" tabindex="-1"></a></span>
-<span id="cb88-4"><a href="#cb88-4" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.3</span>) {</span>
-<span id="cb88-5"><a href="#cb88-5" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Critical energy deficit — must forage regardless of rank.&quot;</span>)</span>
-<span id="cb88-6"><a href="#cb88-6" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (dominance_rank <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb88-7"><a href="#cb88-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Top-ranked animal — can displace others from food patches.&quot;</span>)</span>
-<span id="cb88-8"><a href="#cb88-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (dominance_rank <span class="sc">&lt;=</span> <span class="dv">3</span>) {</span>
-<span id="cb88-9"><a href="#cb88-9" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Mid-ranked animal — can access food if dominant individuals are absent.&quot;</span>)</span>
-<span id="cb88-10"><a href="#cb88-10" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb88-11"><a href="#cb88-11" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Low-ranked animal — wait at patch periphery.&quot;</span>)</span>
-<span id="cb88-12"><a href="#cb88-12" tabindex="-1"></a>}</span></code></pre></div>
+<p>You can chain multiple conditions with <code>else if</code>:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a>dominance_rank <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb92-2"><a href="#cb92-2" tabindex="-1"></a>energy_level   <span class="ot">&lt;-</span> <span class="fl">0.35</span></span>
+<span id="cb92-3"><a href="#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="#cb92-4" tabindex="-1"></a><span class="cf">if</span> (energy_level <span class="sc">&lt;</span> <span class="fl">0.3</span>) {</span>
+<span id="cb92-5"><a href="#cb92-5" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Critical energy deficit — must forage regardless of rank.&quot;</span>)</span>
+<span id="cb92-6"><a href="#cb92-6" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (dominance_rank <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb92-7"><a href="#cb92-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Top-ranked animal — can displace others from food patches.&quot;</span>)</span>
+<span id="cb92-8"><a href="#cb92-8" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (dominance_rank <span class="sc">&lt;=</span> <span class="dv">3</span>) {</span>
+<span id="cb92-9"><a href="#cb92-9" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Mid-ranked animal — can access food if dominant individuals are absent.&quot;</span>)</span>
+<span id="cb92-10"><a href="#cb92-10" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb92-11"><a href="#cb92-11" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Low-ranked animal — wait at patch periphery.&quot;</span>)</span>
+<span id="cb92-12"><a href="#cb92-12" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;Mid-ranked animal — can access food if dominant individuals are absent.&quot;</code></pre>
 <p>Practice with the code chunk above by changing the values of
 <code>dominance_rank</code> and <code>energy_level</code> to see what
-happens. Here’s an overview of the basic skeleton of <code>if</code>,
+happens.</p>
+<p>Here’s an overview of the basic skeleton of <code>if</code>,
 <code>else if</code>, and <code>else</code> statements:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a><span class="cf">if</span> (condition1) {</span>
-<span id="cb90-2"><a href="#cb90-2" tabindex="-1"></a>    <span class="co"># all code in this block runs if condition1 is TRUE</span></span>
-<span id="cb90-3"><a href="#cb90-3" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition2) {</span>
-<span id="cb90-4"><a href="#cb90-4" tabindex="-1"></a>    <span class="co"># all code in this block runs if condition1 is FALSE and condition2 is TRUE</span></span>
-<span id="cb90-5"><a href="#cb90-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb90-6"><a href="#cb90-6" tabindex="-1"></a>    <span class="co"># all code in this block runs if all previous conditions are FALSE</span></span>
-<span id="cb90-7"><a href="#cb90-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a><span class="cf">if</span> (condition1) {</span>
+<span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>    <span class="co"># all code in this block runs if condition1 is TRUE</span></span>
+<span id="cb94-3"><a href="#cb94-3" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition2) {</span>
+<span id="cb94-4"><a href="#cb94-4" tabindex="-1"></a>    <span class="co"># all code in this block runs if condition1 is FALSE and condition2 is TRUE</span></span>
+<span id="cb94-5"><a href="#cb94-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb94-6"><a href="#cb94-6" tabindex="-1"></a>    <span class="co"># all code in this block runs if all previous conditions are FALSE</span></span>
+<span id="cb94-7"><a href="#cb94-7" tabindex="-1"></a>}</span></code></pre></div>
 <blockquote>
-<p><strong>Key idea:</strong> Use <code>if()</code> with evaluations
-(like <code>energy_level &gt; 0.5</code>) to code up behavioral rules
-for your agents.</p>
+<p><strong>Key idea:</strong> Use <code>if()</code> with logical
+evaluations (like <code>energy_level &gt; 0.5</code>) to code up
+behavioral rules for your agents.</p>
 </blockquote>
 <hr />
 </div>
@@ -2064,30 +2073,65 @@ each agent’s energy level or memory contents at the end of one timestep
 in the simulation. In agent-based modeling, each timestep in a
 simulation is called a <em>tick</em>.</p>
 <p>Here’s the basic loop structure:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb91-2"><a href="#cb91-2" tabindex="-1"></a>    <span class="co"># all of the code in this block runs once per tick</span></span>
-<span id="cb91-3"><a href="#cb91-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sequence) {</span>
+<span id="cb95-2"><a href="#cb95-2" tabindex="-1"></a>    <span class="co"># all of the code in this block runs once</span></span>
+<span id="cb95-3"><a href="#cb95-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>The <code>i</code> is a counter variable that you create (you can
-name it anything you want) and the <code>1:10</code> is a sequence that
-you also create. When the <code>for()</code> loop runs, the
-<code>i</code> will take on the value of each thing in the sequence, one
-by one, always in order.</p>
+name it anything you want) and the variable called <code>sequence</code>
+is any sequence that you create (you can also name it anything you
+want). When the <code>for()</code> loop runs, the <code>i</code> will
+take on the value of each thing in the sequence, one by one, always in
+order. We can see how this works by printing the value of <code>i</code>
+at every step through the loop:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb96-2"><a href="#cb96-2" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
+<span id="cb96-3"><a href="#cb96-3" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>#&gt; [1] 1
+#&gt; [1] 2
+#&gt; [1] 3
+#&gt; [1] 4
+#&gt; [1] 5
+#&gt; [1] 6
+#&gt; [1] 7
+#&gt; [1] 8
+#&gt; [1] 9
+#&gt; [1] 10</code></pre>
+<p>The <code>i</code> here is an index, just like we saw in the section
+on Indexing.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb98-2"><a href="#cb98-2" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb98-3"><a href="#cb98-3" tabindex="-1"></a>sequence[i]</span></code></pre></div>
+<pre><code>#&gt; [1] 5</code></pre>
 <p>Here are several examples of different ways to write loops. Play with
 this code by making changes to see how loops and their counters
 work.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a><span class="co"># use this colon notation to make a sequence</span></span>
-<span id="cb92-2"><a href="#cb92-2" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb92-3"><a href="#cb92-3" tabindex="-1"></a>sequence</span></code></pre></div>
-<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a><span class="co"># the i is actually an index</span></span>
-<span id="cb94-2"><a href="#cb94-2" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb94-3"><a href="#cb94-3" tabindex="-1"></a>sequence[i]</span></code></pre></div>
-<pre><code>#&gt; [1] 5</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="co"># run the loop - it will execute the block of code 10 times</span></span>
-<span id="cb96-2"><a href="#cb96-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sequence) {</span>
-<span id="cb96-3"><a href="#cb96-3" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;this is tick number:&quot;</span>,<span class="at">quote=</span>F)</span>
-<span id="cb96-4"><a href="#cb96-4" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
-<span id="cb96-5"><a href="#cb96-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="co"># create a sequence</span></span>
+<span id="cb100-2"><a href="#cb100-2" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb100-3"><a href="#cb100-3" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="#cb100-4" tabindex="-1"></a><span class="co"># run the loop - it will execute the block of code 5 times</span></span>
+<span id="cb100-5"><a href="#cb100-5" tabindex="-1"></a><span class="co"># because there are 5 elements in the sequence called &quot;steps&quot;</span></span>
+<span id="cb100-6"><a href="#cb100-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> steps) {</span>
+<span id="cb100-7"><a href="#cb100-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;this is step number:&quot;</span>,<span class="at">quote=</span>F)</span>
+<span id="cb100-8"><a href="#cb100-8" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
+<span id="cb100-9"><a href="#cb100-9" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>#&gt; [1] this is step number:
+#&gt; [1] 1
+#&gt; [1] this is step number:
+#&gt; [1] 2
+#&gt; [1] this is step number:
+#&gt; [1] 3
+#&gt; [1] this is step number:
+#&gt; [1] 4
+#&gt; [1] this is step number:
+#&gt; [1] 5</code></pre>
+<p>In the code above, change the length of the sequence and run it
+again!</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb102-2"><a href="#cb102-2" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
+<span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;this is tick number:&quot;</span>,<span class="at">quote=</span>F)</span>
+<span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a>    <span class="fu">print</span>(tick)</span>
+<span id="cb102-6"><a href="#cb102-6" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] this is tick number:
 #&gt; [1] 1
 #&gt; [1] this is tick number:
@@ -2099,47 +2143,22 @@ work.</p>
 #&gt; [1] this is tick number:
 #&gt; [1] 5
 #&gt; [1] this is tick number:
-#&gt; [1] 6
-#&gt; [1] this is tick number:
-#&gt; [1] 7
-#&gt; [1] this is tick number:
-#&gt; [1] 8
-#&gt; [1] this is tick number:
-#&gt; [1] 9
-#&gt; [1] this is tick number:
-#&gt; [1] 10</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a><span class="co"># change the length of the sequence and run it again</span></span></code></pre></div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb99-2"><a href="#cb99-2" tabindex="-1"></a></span>
-<span id="cb99-3"><a href="#cb99-3" tabindex="-1"></a><span class="cf">for</span> (tick <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
-<span id="cb99-4"><a href="#cb99-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;this is tick number:&quot;</span>,<span class="at">quote=</span>F)</span>
-<span id="cb99-5"><a href="#cb99-5" tabindex="-1"></a>    <span class="fu">print</span>(tick)</span>
-<span id="cb99-6"><a href="#cb99-6" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>#&gt; [1] this is tick number:
-#&gt; [1] 1
-#&gt; [1] this is tick number:
-#&gt; [1] 2
-#&gt; [1] this is tick number:
-#&gt; [1] 3
-#&gt; [1] this is tick number:
-#&gt; [1] 4
-#&gt; [1] this is tick number:
-#&gt; [1] 5</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" tabindex="-1"></a><span class="co"># change the number of ticks</span></span>
-<span id="cb101-2"><a href="#cb101-2" tabindex="-1"></a><span class="co"># change the variable names for &quot;tick&quot; and &quot;ticks&quot;</span></span></code></pre></div>
+#&gt; [1] 6</code></pre>
+<p>In the code above, change the number of ticks and see what happens.
+Also try changing the variable names for “tick” and “ticks”.</p>
 <p>Here are two ways to write a loop that does the exact same thing. The
 outcome is the same, but the implementation is different:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a>agent_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Silvia&quot;</span>,<span class="st">&quot;Clarence&quot;</span>,<span class="st">&quot;Rodrigo&quot;</span>)</span>
-<span id="cb102-2"><a href="#cb102-2" tabindex="-1"></a></span>
-<span id="cb102-3"><a href="#cb102-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(agent_names)) {</span>
-<span id="cb102-4"><a href="#cb102-4" tabindex="-1"></a>    <span class="fu">print</span>(agent_names[i])</span>
-<span id="cb102-5"><a href="#cb102-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a>agent_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Silvia&quot;</span>,<span class="st">&quot;Clarence&quot;</span>,<span class="st">&quot;Rodrigo&quot;</span>)</span>
+<span id="cb104-2"><a href="#cb104-2" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="#cb104-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(agent_names)) {</span>
+<span id="cb104-4"><a href="#cb104-4" tabindex="-1"></a>    <span class="fu">print</span>(agent_names[i])</span>
+<span id="cb104-5"><a href="#cb104-5" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;Silvia&quot;
 #&gt; [1] &quot;Clarence&quot;
 #&gt; [1] &quot;Rodrigo&quot;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> agent_names) {</span>
-<span id="cb104-2"><a href="#cb104-2" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
-<span id="cb104-3"><a href="#cb104-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> agent_names) {</span>
+<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>    <span class="fu">print</span>(i)</span>
+<span id="cb106-3"><a href="#cb106-3" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;Silvia&quot;
 #&gt; [1] &quot;Clarence&quot;
 #&gt; [1] &quot;Rodrigo&quot;</code></pre>
@@ -2150,24 +2169,24 @@ outcome is the same, but the implementation is different:</p>
 loops over ticks and then, within each tick, it loops over agents. In
 this example, we decrease the energy level of each agent by one point on
 every tick.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">3</span>     <span class="co"># note that this is a single number</span></span>
-<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a>agents <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>  <span class="co"># note that this is a vector</span></span>
-<span id="cb106-3"><a href="#cb106-3" tabindex="-1"></a>agent_energy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">5</span>)  <span class="co"># set initial values for energy levels</span></span>
-<span id="cb106-4"><a href="#cb106-4" tabindex="-1"></a></span>
-<span id="cb106-5"><a href="#cb106-5" tabindex="-1"></a><span class="co"># loop over ticks</span></span>
-<span id="cb106-6"><a href="#cb106-6" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
-<span id="cb106-7"><a href="#cb106-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;------------------------&quot;</span>,<span class="at">quote=</span>F)  <span class="co"># make the output easy to read</span></span>
-<span id="cb106-8"><a href="#cb106-8" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;tick:&quot;</span>,t),<span class="at">quote=</span>F)</span>
-<span id="cb106-9"><a href="#cb106-9" tabindex="-1"></a>    </span>
-<span id="cb106-10"><a href="#cb106-10" tabindex="-1"></a>    <span class="co"># loop over agents</span></span>
-<span id="cb106-11"><a href="#cb106-11" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> agents) {</span>
-<span id="cb106-12"><a href="#cb106-12" tabindex="-1"></a>        agent_energy[i] <span class="ot">&lt;-</span> agent_energy[i]<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb106-13"><a href="#cb106-13" tabindex="-1"></a>    }</span>
-<span id="cb106-14"><a href="#cb106-14" tabindex="-1"></a>    </span>
-<span id="cb106-15"><a href="#cb106-15" tabindex="-1"></a>    <span class="co"># after the loop over agents is complete, print the new energy levels</span></span>
-<span id="cb106-16"><a href="#cb106-16" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;agent energy levels are:&quot;</span>,<span class="at">quote=</span>F)</span>
-<span id="cb106-17"><a href="#cb106-17" tabindex="-1"></a>    <span class="fu">print</span>(agent_energy)</span>
-<span id="cb106-18"><a href="#cb106-18" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">3</span>     <span class="co"># note that this is a single number</span></span>
+<span id="cb108-2"><a href="#cb108-2" tabindex="-1"></a>agents <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>  <span class="co"># note that this is a list</span></span>
+<span id="cb108-3"><a href="#cb108-3" tabindex="-1"></a>agent_energy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">5</span>)  <span class="co"># set initial values for energy levels</span></span>
+<span id="cb108-4"><a href="#cb108-4" tabindex="-1"></a></span>
+<span id="cb108-5"><a href="#cb108-5" tabindex="-1"></a><span class="co"># loop over ticks</span></span>
+<span id="cb108-6"><a href="#cb108-6" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
+<span id="cb108-7"><a href="#cb108-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;------------------------&quot;</span>,<span class="at">quote=</span>F)  <span class="co"># make the output easy to read</span></span>
+<span id="cb108-8"><a href="#cb108-8" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;tick:&quot;</span>,t),<span class="at">quote=</span>F)</span>
+<span id="cb108-9"><a href="#cb108-9" tabindex="-1"></a>    </span>
+<span id="cb108-10"><a href="#cb108-10" tabindex="-1"></a>    <span class="co"># loop over agents</span></span>
+<span id="cb108-11"><a href="#cb108-11" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> agents) {</span>
+<span id="cb108-12"><a href="#cb108-12" tabindex="-1"></a>        agent_energy[i] <span class="ot">&lt;-</span> agent_energy[i]<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb108-13"><a href="#cb108-13" tabindex="-1"></a>    }</span>
+<span id="cb108-14"><a href="#cb108-14" tabindex="-1"></a>    </span>
+<span id="cb108-15"><a href="#cb108-15" tabindex="-1"></a>    <span class="co"># after the loop over agents is complete, print the new energy levels</span></span>
+<span id="cb108-16"><a href="#cb108-16" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;agent energy levels are:&quot;</span>,<span class="at">quote=</span>F)</span>
+<span id="cb108-17"><a href="#cb108-17" tabindex="-1"></a>    <span class="fu">print</span>(agent_energy)</span>
+<span id="cb108-18"><a href="#cb108-18" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] ------------------------
 #&gt; [1] tick: 1    
 #&gt; [1] agent energy levels are:
@@ -2180,8 +2199,8 @@ every tick.</p>
 #&gt; [1] tick: 3    
 #&gt; [1] agent energy levels are:
 #&gt; [1]  7  4 -1  6  2</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a><span class="co"># when the loop over ticks is done, print</span></span>
-<span id="cb108-2"><a href="#cb108-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;simulation is done!&quot;</span>,<span class="at">quote=</span>F)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="co"># when the loop over ticks is done, print</span></span>
+<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;simulation is done!&quot;</span>,<span class="at">quote=</span>F)</span></code></pre></div>
 <pre><code>#&gt; [1] simulation is done!</code></pre>
 </div>
 <div id="building-results-inside-a-loop" class="section level3">
@@ -2198,27 +2217,27 @@ R, you’ll get a different outcome each time you run the code. We want
 this behavior in our agent-based models, especially when we run the same
 model thousands of times to see the range of behavior it can produce.
 However, this can make it hard to debug your code and also make it hard
-for other scientists to check that they’ve reproduced your results. Use
-<code>set.seed()</code> to force your code to use the same random
-pathway each time it runs. In the example below, we use seed number 42,
-but you can use any seed number you want.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># set random seed so results are reproducible</span></span>
-<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="#cb110-3" tabindex="-1"></a>N_days <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># run the simulation for 10 simulated days</span></span>
-<span id="cb110-4"><a href="#cb110-4" tabindex="-1"></a>daily_energy_gain <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N_days)  <span class="co"># create an empty numeric vector</span></span>
-<span id="cb110-5"><a href="#cb110-5" tabindex="-1"></a></span>
-<span id="cb110-6"><a href="#cb110-6" tabindex="-1"></a><span class="co"># loop over days</span></span>
-<span id="cb110-7"><a href="#cb110-7" tabindex="-1"></a><span class="cf">for</span> (day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N_days) {</span>
-<span id="cb110-8"><a href="#cb110-8" tabindex="-1"></a>  <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
-<span id="cb110-9"><a href="#cb110-9" tabindex="-1"></a>  daily_energy_gain[day] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>,<span class="at">mean =</span> <span class="dv">8</span>,<span class="at">sd =</span> <span class="fl">1.5</span>)</span>
-<span id="cb110-10"><a href="#cb110-10" tabindex="-1"></a>}</span>
-<span id="cb110-11"><a href="#cb110-11" tabindex="-1"></a></span>
-<span id="cb110-12"><a href="#cb110-12" tabindex="-1"></a><span class="co"># print the vector that we built inside the loop!</span></span>
-<span id="cb110-13"><a href="#cb110-13" tabindex="-1"></a>daily_energy_gain</span></code></pre></div>
+for other scientists to check that they’ve reproduced your results. You
+can use <code>set.seed()</code> to force your code to use the same
+random pathway each time it runs. In the example below, we use seed
+number 42, but you can use any seed number you want.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># set random seed so results are reproducible</span></span>
+<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="#cb112-3" tabindex="-1"></a>N_days <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># run the simulation for 10 simulated days</span></span>
+<span id="cb112-4"><a href="#cb112-4" tabindex="-1"></a>daily_energy_gain <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N_days)  <span class="co"># create an empty numeric vector</span></span>
+<span id="cb112-5"><a href="#cb112-5" tabindex="-1"></a></span>
+<span id="cb112-6"><a href="#cb112-6" tabindex="-1"></a><span class="co"># loop over days</span></span>
+<span id="cb112-7"><a href="#cb112-7" tabindex="-1"></a><span class="cf">for</span> (day <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N_days) {</span>
+<span id="cb112-8"><a href="#cb112-8" tabindex="-1"></a>  <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
+<span id="cb112-9"><a href="#cb112-9" tabindex="-1"></a>  daily_energy_gain[day] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>,<span class="at">mean =</span> <span class="dv">8</span>,<span class="at">sd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb112-10"><a href="#cb112-10" tabindex="-1"></a>}</span>
+<span id="cb112-11"><a href="#cb112-11" tabindex="-1"></a></span>
+<span id="cb112-12"><a href="#cb112-12" tabindex="-1"></a><span class="co"># print the vector that we built inside the loop!</span></span>
+<span id="cb112-13"><a href="#cb112-13" tabindex="-1"></a>daily_energy_gain</span></code></pre></div>
 <pre><code>#&gt;  [1] 10.056438  7.152953  8.544693  8.949294  8.606402  7.840813 10.267283
 #&gt;  [8]  7.858011 11.027636  7.905929</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" tabindex="-1"></a><span class="co"># calculate its mean - should be close to the mean we used in rnorm()</span></span>
-<span id="cb112-2"><a href="#cb112-2" tabindex="-1"></a><span class="fu">mean</span>(daily_energy_gain)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a><span class="co"># calculate its mean - should be close to the mean we used in rnorm()</span></span>
+<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a><span class="fu">mean</span>(daily_energy_gain)</span></code></pre></div>
 <pre><code>#&gt; [1] 8.820945</code></pre>
 <blockquote>
 <p><strong>Key Idea:</strong> Use loops to repeat computations for each
@@ -2237,13 +2256,13 @@ takes <strong>inputs</strong> (called arguments) and returns an
 <code>mean()</code> and <code>rnorm()</code>. Now you’ll write your
 own!</p>
 <p>Here is the basic structure of a function:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>my_adding_function <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2) {</span>
-<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>    <span class="co"># all of the code in this block runs when we run the function</span></span>
-<span id="cb114-3"><a href="#cb114-3" tabindex="-1"></a>    result <span class="ot">&lt;-</span> argument1 <span class="sc">+</span> argument2</span>
-<span id="cb114-4"><a href="#cb114-4" tabindex="-1"></a>    </span>
-<span id="cb114-5"><a href="#cb114-5" tabindex="-1"></a>    <span class="co"># this is what the function hands back to you</span></span>
-<span id="cb114-6"><a href="#cb114-6" tabindex="-1"></a>    <span class="fu">return</span>(result)  </span>
-<span id="cb114-7"><a href="#cb114-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a>my_adding_function <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2) {</span>
+<span id="cb116-2"><a href="#cb116-2" tabindex="-1"></a>    <span class="co"># all of the code in this block runs when we run the function</span></span>
+<span id="cb116-3"><a href="#cb116-3" tabindex="-1"></a>    result <span class="ot">&lt;-</span> argument1 <span class="sc">+</span> argument2</span>
+<span id="cb116-4"><a href="#cb116-4" tabindex="-1"></a>    </span>
+<span id="cb116-5"><a href="#cb116-5" tabindex="-1"></a>    <span class="co"># this is what the function hands back to you</span></span>
+<span id="cb116-6"><a href="#cb116-6" tabindex="-1"></a>    <span class="fu">return</span>(result)  </span>
+<span id="cb116-7"><a href="#cb116-7" tabindex="-1"></a>}</span></code></pre></div>
 <p>In the code above, we gave this function the name
 <code>my_adding_function</code>. What this function does is it takes two
 inputs (argument1, argument2) and adds them together. It saves the
@@ -2254,9 +2273,9 @@ function, it <em>defines</em> the function. We’re actually using R’s
 built-in function-making function called <code>function</code> to create
 our own function! Function-ception 😱</p>
 <p>Here’s how to <strong>actually</strong> run the function:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" tabindex="-1"></a><span class="fu">my_adding_function</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">my_adding_function</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 5</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a><span class="fu">my_adding_function</span>(<span class="dv">99</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a><span class="fu">my_adding_function</span>(<span class="dv">99</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 100</code></pre>
 <p><strong>Note:</strong> Remember, can’t run your function if you
 haven’t defined it! Please try to remember this distinction between
@@ -2268,20 +2287,20 @@ functions!</p>
 </div>
 <div id="why-to-use-functions" class="section level3">
 <h3>Why to use functions</h3>
-<p>Functions are great for computational modelling, like agent-based
-modelling, because they let you divide up the procedures in your model
+<p>Functions are great for computational modeling, like agent-based
+modeling, because they let you divide up the procedures in your model
 into separate <em>computations</em>. A computation is procedure that
 maps inputs to outputs. And in math terminology, a function is also a
 mapping from inputs to outputs! So it makes sense to code each
 computation in your model as its own function. This is useful
 practically, for code organization, as well as conceptually, for
-designing computional models.</p>
+designing computational models.</p>
 <p>On the practical side, we typically send (or “pipe”) the output of
 one function as an input to another function. When you design an
 agent-based model with many steps and decision rules, it great to
 package each step into its own function and then run these functions one
 after another in a <em>pipeline</em>. This keeps your code nice and
-organized, understandable, readable, debuggable, and reproduceable!</p>
+organized, understandable, readable, debuggable, and reproducible!</p>
 <p>On the conceptual side, computational models in biology and cognition
 often view computations as something that real-world living systems are
 actually carrying out somehow. So designing good models means breaking
@@ -2295,22 +2314,21 @@ gain more and more experience coding!</p>
 <h3>Example functions to play with</h3>
 <div id="example-1" class="section level4">
 <h4>Example 1</h4>
-<p>Calculate a body condition index for birds, which is the bird’s mass
-in grams divided by its wing length. The function’s inputs are
-<strong>mass in grams</strong> and <strong>wing length</strong>. The
-function’s output is the <strong>body condition index</strong>. The
-procedure that the function executes is “divide mass in grams by wing
-length”.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" tabindex="-1"></a><span class="co"># define the function</span></span>
-<span id="cb119-2"><a href="#cb119-2" tabindex="-1"></a>body_condition_index <span class="ot">&lt;-</span> <span class="cf">function</span>(mass_g, wing_mm) {</span>
-<span id="cb119-3"><a href="#cb119-3" tabindex="-1"></a>  bci <span class="ot">&lt;-</span> mass_g <span class="sc">/</span> wing_mm</span>
-<span id="cb119-4"><a href="#cb119-4" tabindex="-1"></a>  <span class="fu">return</span>(bci)</span>
-<span id="cb119-5"><a href="#cb119-5" tabindex="-1"></a>}</span>
-<span id="cb119-6"><a href="#cb119-6" tabindex="-1"></a></span>
-<span id="cb119-7"><a href="#cb119-7" tabindex="-1"></a><span class="co"># run the function</span></span>
-<span id="cb119-8"><a href="#cb119-8" tabindex="-1"></a><span class="fu">body_condition_index</span>(<span class="at">mass_g =</span> <span class="fl">31.2</span>, <span class="at">wing_mm =</span> <span class="dv">74</span>)</span></code></pre></div>
+<p>Create a body condition index for birds, which is the bird’s mass in
+grams divided by its wing length. The function’s inputs are <strong>mass
+in grams</strong> and <strong>wing length</strong>. The function’s
+output is the <strong>body condition index</strong>. The procedure that
+the function executes is “divide mass in grams by wing length”.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="co"># define the function</span></span>
+<span id="cb121-2"><a href="#cb121-2" tabindex="-1"></a>body_condition_index <span class="ot">&lt;-</span> <span class="cf">function</span>(mass_g, wing_mm) {</span>
+<span id="cb121-3"><a href="#cb121-3" tabindex="-1"></a>  bci <span class="ot">&lt;-</span> mass_g <span class="sc">/</span> wing_mm</span>
+<span id="cb121-4"><a href="#cb121-4" tabindex="-1"></a>  <span class="fu">return</span>(bci)</span>
+<span id="cb121-5"><a href="#cb121-5" tabindex="-1"></a>}</span>
+<span id="cb121-6"><a href="#cb121-6" tabindex="-1"></a></span>
+<span id="cb121-7"><a href="#cb121-7" tabindex="-1"></a><span class="co"># run the function</span></span>
+<span id="cb121-8"><a href="#cb121-8" tabindex="-1"></a><span class="fu">body_condition_index</span>(<span class="at">mass_g =</span> <span class="fl">31.2</span>, <span class="at">wing_mm =</span> <span class="dv">74</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.4216216</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" tabindex="-1"></a><span class="fu">body_condition_index</span>(<span class="at">mass_g =</span> <span class="fl">28.5</span>, <span class="at">wing_mm =</span> <span class="dv">72</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="fu">body_condition_index</span>(<span class="at">mass_g =</span> <span class="fl">28.5</span>, <span class="at">wing_mm =</span> <span class="dv">72</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.3958333</code></pre>
 </div>
 <div id="example-2" class="section level4">
@@ -2321,20 +2339,20 @@ of foraging. The agent finds food using that <code>rnorm()</code> method
 we used above in the Loops section. The agent also pays a metabolic cost
 for one day’s worth of foraging, which the user can specify with the
 function’s <code>metabolic_cost</code> input.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" tabindex="-1"></a><span class="co"># define the function forage()</span></span>
-<span id="cb123-2"><a href="#cb123-2" tabindex="-1"></a>forage <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost) {</span>
-<span id="cb123-3"><a href="#cb123-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
-<span id="cb123-4"><a href="#cb123-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="fl">0.8</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
-<span id="cb123-5"><a href="#cb123-5" tabindex="-1"></a>    </span>
-<span id="cb123-6"><a href="#cb123-6" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
-<span id="cb123-7"><a href="#cb123-7" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
-<span id="cb123-8"><a href="#cb123-8" tabindex="-1"></a>    </span>
-<span id="cb123-9"><a href="#cb123-9" tabindex="-1"></a>    <span class="co"># return the updated energy level</span></span>
-<span id="cb123-10"><a href="#cb123-10" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
-<span id="cb123-11"><a href="#cb123-11" tabindex="-1"></a>}</span>
-<span id="cb123-12"><a href="#cb123-12" tabindex="-1"></a></span>
-<span id="cb123-13"><a href="#cb123-13" tabindex="-1"></a><span class="co"># run the function</span></span>
-<span id="cb123-14"><a href="#cb123-14" tabindex="-1"></a><span class="fu">forage</span>(<span class="at">energy_level =</span> <span class="dv">10</span>, <span class="at">metabolic_cost =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="co"># define the function forage()</span></span>
+<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a>forage <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost) {</span>
+<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
+<span id="cb125-4"><a href="#cb125-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="fl">0.8</span>, <span class="at">sd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb125-5"><a href="#cb125-5" tabindex="-1"></a>    </span>
+<span id="cb125-6"><a href="#cb125-6" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
+<span id="cb125-7"><a href="#cb125-7" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
+<span id="cb125-8"><a href="#cb125-8" tabindex="-1"></a>    </span>
+<span id="cb125-9"><a href="#cb125-9" tabindex="-1"></a>    <span class="co"># return the updated energy level</span></span>
+<span id="cb125-10"><a href="#cb125-10" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
+<span id="cb125-11"><a href="#cb125-11" tabindex="-1"></a>}</span>
+<span id="cb125-12"><a href="#cb125-12" tabindex="-1"></a></span>
+<span id="cb125-13"><a href="#cb125-13" tabindex="-1"></a><span class="co"># run the function</span></span>
+<span id="cb125-14"><a href="#cb125-14" tabindex="-1"></a><span class="fu">forage</span>(<span class="at">energy_level =</span> <span class="dv">10</span>, <span class="at">metabolic_cost =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 7.757304</code></pre>
 <p>You’ve probably noticed here that <code>rnorm()</code> is also a
 function that takes its own inputs. In the function above, the mean and
@@ -2345,49 +2363,49 @@ fix that here so the user can specify the mean and standard deviation
 used in <code>rnorm()</code> when they run <code>forage()</code>. All we
 have to do is create inputs to forage that get passed to
 <code>rnorm()</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" tabindex="-1"></a><span class="co"># define the function forage2()</span></span>
-<span id="cb125-2"><a href="#cb125-2" tabindex="-1"></a>forage2 <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost,rnorm_mean,rnorm_sd) {</span>
-<span id="cb125-3"><a href="#cb125-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
-<span id="cb125-4"><a href="#cb125-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> rnorm_mean, <span class="at">sd =</span> rnorm_sd)</span>
-<span id="cb125-5"><a href="#cb125-5" tabindex="-1"></a>    </span>
-<span id="cb125-6"><a href="#cb125-6" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
-<span id="cb125-7"><a href="#cb125-7" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
-<span id="cb125-8"><a href="#cb125-8" tabindex="-1"></a>    </span>
-<span id="cb125-9"><a href="#cb125-9" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
-<span id="cb125-10"><a href="#cb125-10" tabindex="-1"></a>}</span>
-<span id="cb125-11"><a href="#cb125-11" tabindex="-1"></a></span>
-<span id="cb125-12"><a href="#cb125-12" tabindex="-1"></a><span class="co"># run the function</span></span>
-<span id="cb125-13"><a href="#cb125-13" tabindex="-1"></a><span class="fu">forage2</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>,<span class="at">rnorm_mean=</span><span class="fl">0.8</span>,<span class="at">rnorm_sd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a><span class="co"># define the function forage2()</span></span>
+<span id="cb127-2"><a href="#cb127-2" tabindex="-1"></a>forage2 <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost,rnorm_mean,rnorm_sd) {</span>
+<span id="cb127-3"><a href="#cb127-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
+<span id="cb127-4"><a href="#cb127-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> rnorm_mean, <span class="at">sd =</span> rnorm_sd)</span>
+<span id="cb127-5"><a href="#cb127-5" tabindex="-1"></a>    </span>
+<span id="cb127-6"><a href="#cb127-6" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
+<span id="cb127-7"><a href="#cb127-7" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
+<span id="cb127-8"><a href="#cb127-8" tabindex="-1"></a>    </span>
+<span id="cb127-9"><a href="#cb127-9" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
+<span id="cb127-10"><a href="#cb127-10" tabindex="-1"></a>}</span>
+<span id="cb127-11"><a href="#cb127-11" tabindex="-1"></a></span>
+<span id="cb127-12"><a href="#cb127-12" tabindex="-1"></a><span class="co"># run the function</span></span>
+<span id="cb127-13"><a href="#cb127-13" tabindex="-1"></a><span class="fu">forage2</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>,<span class="at">rnorm_mean=</span><span class="fl">0.8</span>,<span class="at">rnorm_sd=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 5.229968</code></pre>
 <p>You can give arguments <strong>default values</strong> that are used
 when the caller doesn’t specify them. This is done by using an
 <code>=</code> with the argument we want to set a default value for.
 Let’s rework our forage function again to have a default value of 0.8
 for <code>rnorm_mean</code> and 1.5 for <code>rnorm_sd</code>:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" tabindex="-1"></a><span class="co"># define the function forage3()</span></span>
-<span id="cb127-2"><a href="#cb127-2" tabindex="-1"></a>forage3 <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost,<span class="at">rnorm_mean=</span><span class="fl">0.8</span>,<span class="at">rnorm_sd=</span><span class="fl">1.5</span>) {</span>
-<span id="cb127-3"><a href="#cb127-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
-<span id="cb127-4"><a href="#cb127-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> rnorm_mean, <span class="at">sd =</span> rnorm_sd)</span>
-<span id="cb127-5"><a href="#cb127-5" tabindex="-1"></a>    </span>
-<span id="cb127-6"><a href="#cb127-6" tabindex="-1"></a>    <span class="co"># print rnorm_mean and rnorm_sd to see which values were used</span></span>
-<span id="cb127-7"><a href="#cb127-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;mean:&quot;</span>,rnorm_mean),<span class="at">quote=</span>F)</span>
-<span id="cb127-8"><a href="#cb127-8" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;standard deviation:&quot;</span>,rnorm_sd),<span class="at">quote=</span>F)</span>
-<span id="cb127-9"><a href="#cb127-9" tabindex="-1"></a>    </span>
-<span id="cb127-10"><a href="#cb127-10" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
-<span id="cb127-11"><a href="#cb127-11" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
-<span id="cb127-12"><a href="#cb127-12" tabindex="-1"></a>    </span>
-<span id="cb127-13"><a href="#cb127-13" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
-<span id="cb127-14"><a href="#cb127-14" tabindex="-1"></a>}</span>
-<span id="cb127-15"><a href="#cb127-15" tabindex="-1"></a></span>
-<span id="cb127-16"><a href="#cb127-16" tabindex="-1"></a><span class="co"># run the function in two different ways</span></span>
-<span id="cb127-17"><a href="#cb127-17" tabindex="-1"></a></span>
-<span id="cb127-18"><a href="#cb127-18" tabindex="-1"></a><span class="co"># specify rnorm_mean and rnorm_sd to override the default values with new values</span></span>
-<span id="cb127-19"><a href="#cb127-19" tabindex="-1"></a><span class="fu">forage3</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>,<span class="at">rnorm_mean=</span><span class="fl">0.5</span>,<span class="at">rnorm_sd=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" tabindex="-1"></a><span class="co"># define the function forage3()</span></span>
+<span id="cb129-2"><a href="#cb129-2" tabindex="-1"></a>forage3 <span class="ot">&lt;-</span> <span class="cf">function</span>(energy_level,metabolic_cost,<span class="at">rnorm_mean=</span><span class="fl">0.8</span>,<span class="at">rnorm_sd=</span><span class="fl">1.5</span>) {</span>
+<span id="cb129-3"><a href="#cb129-3" tabindex="-1"></a>    <span class="co"># energy gain is drawn randomly from a normal distribution</span></span>
+<span id="cb129-4"><a href="#cb129-4" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> rnorm_mean, <span class="at">sd =</span> rnorm_sd)</span>
+<span id="cb129-5"><a href="#cb129-5" tabindex="-1"></a>    </span>
+<span id="cb129-6"><a href="#cb129-6" tabindex="-1"></a>    <span class="co"># print rnorm_mean and rnorm_sd to see which values were used</span></span>
+<span id="cb129-7"><a href="#cb129-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;mean:&quot;</span>,rnorm_mean),<span class="at">quote=</span>F)</span>
+<span id="cb129-8"><a href="#cb129-8" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;standard deviation:&quot;</span>,rnorm_sd),<span class="at">quote=</span>F)</span>
+<span id="cb129-9"><a href="#cb129-9" tabindex="-1"></a>    </span>
+<span id="cb129-10"><a href="#cb129-10" tabindex="-1"></a>    <span class="co"># subtract a metabolic cost of foraging for one day</span></span>
+<span id="cb129-11"><a href="#cb129-11" tabindex="-1"></a>    energy_level <span class="ot">&lt;-</span> energy_level <span class="sc">-</span> metabolic_cost</span>
+<span id="cb129-12"><a href="#cb129-12" tabindex="-1"></a>    </span>
+<span id="cb129-13"><a href="#cb129-13" tabindex="-1"></a>    <span class="fu">return</span>(energy_level)</span>
+<span id="cb129-14"><a href="#cb129-14" tabindex="-1"></a>}</span>
+<span id="cb129-15"><a href="#cb129-15" tabindex="-1"></a></span>
+<span id="cb129-16"><a href="#cb129-16" tabindex="-1"></a><span class="co"># run the function in two different ways</span></span>
+<span id="cb129-17"><a href="#cb129-17" tabindex="-1"></a></span>
+<span id="cb129-18"><a href="#cb129-18" tabindex="-1"></a><span class="co"># specify rnorm_mean and rnorm_sd to override the default values with new values</span></span>
+<span id="cb129-19"><a href="#cb129-19" tabindex="-1"></a><span class="fu">forage3</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>,<span class="at">rnorm_mean=</span><span class="fl">0.5</span>,<span class="at">rnorm_sd=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] mean: 0.5  
 #&gt; [1] standard deviation: 2</code></pre>
 <pre><code>#&gt; [1] -1.277721</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" tabindex="-1"></a><span class="co"># leave rnorm_mean and rnorm_sd out to use the default values</span></span>
-<span id="cb130-2"><a href="#cb130-2" tabindex="-1"></a><span class="fu">forage3</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" tabindex="-1"></a><span class="co"># leave rnorm_mean and rnorm_sd out to use the default values</span></span>
+<span id="cb132-2"><a href="#cb132-2" tabindex="-1"></a><span class="fu">forage3</span>(<span class="at">energy_level=</span><span class="dv">2</span>,<span class="at">metabolic_cost=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] mean: 0.8  
 #&gt; [1] standard deviation: 1.5</code></pre>
 <pre><code>#&gt; [1] 1.381817</code></pre>
@@ -2401,34 +2419,34 @@ is the strength value for individual A <br> <code>strength_B</code> is
 the strength value for individual B <br></p>
 <p>Output: the individual ID of the winner.</p>
 <p>Procedure: individuals have a probability of winning that is equal to
-their relative strength. Flip a coin with this probability of win to
-lose to determine the outcome of the fight.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" tabindex="-1"></a>dominance_contest <span class="ot">&lt;-</span> <span class="cf">function</span>(id_A, id_B, strength_A, strength_B) {</span>
-<span id="cb133-2"><a href="#cb133-2" tabindex="-1"></a>  </span>
-<span id="cb133-3"><a href="#cb133-3" tabindex="-1"></a>    <span class="co"># probability of A winning is proportional to its relative strength</span></span>
-<span id="cb133-4"><a href="#cb133-4" tabindex="-1"></a>    p_A_wins <span class="ot">&lt;-</span> strength_A <span class="sc">/</span> (strength_A <span class="sc">+</span> strength_B)</span>
-<span id="cb133-5"><a href="#cb133-5" tabindex="-1"></a>    </span>
-<span id="cb133-6"><a href="#cb133-6" tabindex="-1"></a>    <span class="co"># print the probability of A winning</span></span>
-<span id="cb133-7"><a href="#cb133-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste0</span>(id_A,<span class="st">&quot;&#39;s probability of winning is: &quot;</span>,p_A_wins),<span class="at">quote=</span>F)</span>
-<span id="cb133-8"><a href="#cb133-8" tabindex="-1"></a>  </span>
-<span id="cb133-9"><a href="#cb133-9" tabindex="-1"></a>    <span class="co"># generate a random number between 0 and 1 with runif() </span></span>
-<span id="cb133-10"><a href="#cb133-10" tabindex="-1"></a>    rando <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
-<span id="cb133-11"><a href="#cb133-11" tabindex="-1"></a>    </span>
-<span id="cb133-12"><a href="#cb133-12" tabindex="-1"></a>    <span class="co"># if rando is less than p_A_wins, then A wins</span></span>
-<span id="cb133-13"><a href="#cb133-13" tabindex="-1"></a>    <span class="co"># otherwise, B wins</span></span>
-<span id="cb133-14"><a href="#cb133-14" tabindex="-1"></a>    <span class="cf">if</span> (rando <span class="sc">&lt;</span> p_A_wins) {</span>
-<span id="cb133-15"><a href="#cb133-15" tabindex="-1"></a>        winner <span class="ot">&lt;-</span> id_A </span>
-<span id="cb133-16"><a href="#cb133-16" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb133-17"><a href="#cb133-17" tabindex="-1"></a>        winner <span class="ot">&lt;-</span> id_B</span>
-<span id="cb133-18"><a href="#cb133-18" tabindex="-1"></a>    }</span>
-<span id="cb133-19"><a href="#cb133-19" tabindex="-1"></a>    </span>
-<span id="cb133-20"><a href="#cb133-20" tabindex="-1"></a>    <span class="co"># return the winner</span></span>
-<span id="cb133-21"><a href="#cb133-21" tabindex="-1"></a>    <span class="fu">return</span>(winner)</span>
-<span id="cb133-22"><a href="#cb133-22" tabindex="-1"></a>}</span>
-<span id="cb133-23"><a href="#cb133-23" tabindex="-1"></a></span>
-<span id="cb133-24"><a href="#cb133-24" tabindex="-1"></a><span class="co"># Run a contest</span></span>
-<span id="cb133-25"><a href="#cb133-25" tabindex="-1"></a><span class="fu">dominance_contest</span>(<span class="at">id_A =</span> <span class="st">&quot;Chimp_01&quot;</span>, <span class="at">id_B =</span> <span class="st">&quot;Chimp_02&quot;</span>,</span>
-<span id="cb133-26"><a href="#cb133-26" tabindex="-1"></a>                  <span class="at">strength_A =</span> <span class="fl">7.2</span>,   <span class="at">strength_B =</span> <span class="fl">5.9</span>)</span></code></pre></div>
+their relative strength. Flip a coin (biased with this probability) to
+determine the outcome of the fight.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a>dominance_contest <span class="ot">&lt;-</span> <span class="cf">function</span>(id_A, id_B, strength_A, strength_B) {</span>
+<span id="cb135-2"><a href="#cb135-2" tabindex="-1"></a>  </span>
+<span id="cb135-3"><a href="#cb135-3" tabindex="-1"></a>    <span class="co"># probability of A winning is proportional to its relative strength to B</span></span>
+<span id="cb135-4"><a href="#cb135-4" tabindex="-1"></a>    p_A_wins <span class="ot">&lt;-</span> strength_A <span class="sc">/</span> (strength_A <span class="sc">+</span> strength_B)</span>
+<span id="cb135-5"><a href="#cb135-5" tabindex="-1"></a>    </span>
+<span id="cb135-6"><a href="#cb135-6" tabindex="-1"></a>    <span class="co"># print the probability of A winning</span></span>
+<span id="cb135-7"><a href="#cb135-7" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste0</span>(id_A,<span class="st">&quot;&#39;s probability of winning is: &quot;</span>,p_A_wins),<span class="at">quote=</span>F)</span>
+<span id="cb135-8"><a href="#cb135-8" tabindex="-1"></a>  </span>
+<span id="cb135-9"><a href="#cb135-9" tabindex="-1"></a>    <span class="co"># generate a random number between 0 and 1 with runif() </span></span>
+<span id="cb135-10"><a href="#cb135-10" tabindex="-1"></a>    rando <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb135-11"><a href="#cb135-11" tabindex="-1"></a>    </span>
+<span id="cb135-12"><a href="#cb135-12" tabindex="-1"></a>    <span class="co"># if rando is less than p_A_wins, then A wins</span></span>
+<span id="cb135-13"><a href="#cb135-13" tabindex="-1"></a>    <span class="co"># otherwise, B wins</span></span>
+<span id="cb135-14"><a href="#cb135-14" tabindex="-1"></a>    <span class="cf">if</span> (rando <span class="sc">&lt;</span> p_A_wins) {</span>
+<span id="cb135-15"><a href="#cb135-15" tabindex="-1"></a>        winner <span class="ot">&lt;-</span> id_A </span>
+<span id="cb135-16"><a href="#cb135-16" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb135-17"><a href="#cb135-17" tabindex="-1"></a>        winner <span class="ot">&lt;-</span> id_B</span>
+<span id="cb135-18"><a href="#cb135-18" tabindex="-1"></a>    }</span>
+<span id="cb135-19"><a href="#cb135-19" tabindex="-1"></a>    </span>
+<span id="cb135-20"><a href="#cb135-20" tabindex="-1"></a>    <span class="co"># return the winner</span></span>
+<span id="cb135-21"><a href="#cb135-21" tabindex="-1"></a>    <span class="fu">return</span>(winner)</span>
+<span id="cb135-22"><a href="#cb135-22" tabindex="-1"></a>}</span>
+<span id="cb135-23"><a href="#cb135-23" tabindex="-1"></a></span>
+<span id="cb135-24"><a href="#cb135-24" tabindex="-1"></a><span class="co"># Run a contest</span></span>
+<span id="cb135-25"><a href="#cb135-25" tabindex="-1"></a><span class="fu">dominance_contest</span>(<span class="at">id_A =</span> <span class="st">&quot;Chimp_01&quot;</span>, <span class="at">id_B =</span> <span class="st">&quot;Chimp_02&quot;</span>,</span>
+<span id="cb135-26"><a href="#cb135-26" tabindex="-1"></a>                  <span class="at">strength_A =</span> <span class="fl">7.2</span>,   <span class="at">strength_B =</span> <span class="fl">5.9</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] Chimp_01&#39;s probability of winning is: 0.549618320610687</code></pre>
 <pre><code>#&gt; [1] &quot;Chimp_01&quot;</code></pre>
 <blockquote>
@@ -2451,47 +2469,50 @@ variable and each row is an observation. Think of it as a spreadsheet
 inside R. In an agent-based model, each row might represent one
 individual in the population, with each column representing one of the
 agent’s state variables. We can also use data frames to store the
-history of events that occurred during your simulation, with every row
-representing one timestep in the simulation.</p>
+history of events that occurred during one run of a simulation, with
+every row representing one timestep in the simulation.</p>
 <p>Here’s how to create a data frame. We’ll create one that stores the
 state variables (ID, sex, age, etc.) for each agent in the
 population.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" tabindex="-1"></a>chimps <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb136-2"><a href="#cb136-2" tabindex="-1"></a>  <span class="at">id             =</span> <span class="fu">c</span>(<span class="st">&quot;C01&quot;</span>, <span class="st">&quot;C02&quot;</span>, <span class="st">&quot;C03&quot;</span>, <span class="st">&quot;C04&quot;</span>, <span class="st">&quot;C05&quot;</span>),</span>
-<span id="cb136-3"><a href="#cb136-3" tabindex="-1"></a>  <span class="at">sex            =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>),</span>
-<span id="cb136-4"><a href="#cb136-4" tabindex="-1"></a>  <span class="at">age_years      =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">31</span>),</span>
-<span id="cb136-5"><a href="#cb136-5" tabindex="-1"></a>  <span class="at">dominance_rank =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>),</span>
-<span id="cb136-6"><a href="#cb136-6" tabindex="-1"></a>  <span class="at">grooming_rate  =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="fl">5.8</span>, <span class="fl">6.1</span>, <span class="fl">4.4</span>, <span class="fl">2.9</span>),   <span class="co"># bouts per hour</span></span>
-<span id="cb136-7"><a href="#cb136-7" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb136-8"><a href="#cb136-8" tabindex="-1"></a>)</span>
-<span id="cb136-9"><a href="#cb136-9" tabindex="-1"></a></span>
-<span id="cb136-10"><a href="#cb136-10" tabindex="-1"></a>chimps</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a>chimps <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb138-2"><a href="#cb138-2" tabindex="-1"></a>  <span class="at">id             =</span> <span class="fu">c</span>(<span class="st">&quot;C01&quot;</span>, <span class="st">&quot;C02&quot;</span>, <span class="st">&quot;C03&quot;</span>, <span class="st">&quot;C04&quot;</span>, <span class="st">&quot;C05&quot;</span>),</span>
+<span id="cb138-3"><a href="#cb138-3" tabindex="-1"></a>  <span class="at">sex            =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>),</span>
+<span id="cb138-4"><a href="#cb138-4" tabindex="-1"></a>  <span class="at">age_years      =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">31</span>),</span>
+<span id="cb138-5"><a href="#cb138-5" tabindex="-1"></a>  <span class="at">dominance_rank =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>),</span>
+<span id="cb138-6"><a href="#cb138-6" tabindex="-1"></a>  <span class="at">grooming_rate  =</span> <span class="fu">c</span>(<span class="fl">3.2</span>, <span class="fl">5.8</span>, <span class="fl">6.1</span>, <span class="fl">4.4</span>, <span class="fl">2.9</span>),   <span class="co"># bouts per hour</span></span>
+<span id="cb138-7"><a href="#cb138-7" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb138-8"><a href="#cb138-8" tabindex="-1"></a>)</span>
+<span id="cb138-9"><a href="#cb138-9" tabindex="-1"></a></span>
+<span id="cb138-10"><a href="#cb138-10" tabindex="-1"></a>chimps</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate
 #&gt; 1 C01   M        22              1           3.2
 #&gt; 2 C02   M        15              3           5.8
 #&gt; 3 C03   F        18              2           6.1
 #&gt; 4 C04   F         9              5           4.4
 #&gt; 5 C05   M        31              4           2.9</code></pre>
-<p>Use <code>$</code> to access a column by name, or <code>[ ]</code>
-with column index:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a><span class="co"># get the age column</span></span>
-<span id="cb138-2"><a href="#cb138-2" tabindex="-1"></a>chimps<span class="sc">$</span>age_years</span></code></pre></div>
+<p>Use <code>$</code> to access a column by name:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" tabindex="-1"></a><span class="co"># get the age column</span></span>
+<span id="cb140-2"><a href="#cb140-2" tabindex="-1"></a>chimps<span class="sc">$</span>age_years</span></code></pre></div>
 <pre><code>#&gt; [1] 22 15 18  9 31</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" tabindex="-1"></a><span class="co"># get the dominance rank column</span></span>
-<span id="cb140-2"><a href="#cb140-2" tabindex="-1"></a>chimps<span class="sc">$</span>dominance_rank</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a><span class="co"># get the dominance rank column</span></span>
+<span id="cb142-2"><a href="#cb142-2" tabindex="-1"></a>chimps<span class="sc">$</span>dominance_rank</span></code></pre></div>
 <pre><code>#&gt; [1] 1 3 2 5 4</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" tabindex="-1"></a><span class="co"># get the first row</span></span>
-<span id="cb142-2"><a href="#cb142-2" tabindex="-1"></a>chimps[<span class="dv">1</span>, ]</span></code></pre></div>
+<p>Use brackets <code>[ ]</code> to access the rows and/or columns:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" tabindex="-1"></a><span class="co"># get the first row</span></span>
+<span id="cb144-2"><a href="#cb144-2" tabindex="-1"></a>chimps[<span class="dv">1</span>, ]</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate
 #&gt; 1 C01   M        22              1           3.2</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" tabindex="-1"></a><span class="co"># get the value in row 3 for the column &quot;dominance_rank&quot;</span></span>
-<span id="cb144-2"><a href="#cb144-2" tabindex="-1"></a>chimps[<span class="dv">3</span>, <span class="st">&quot;dominance_rank&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" tabindex="-1"></a><span class="co"># get the first column</span></span>
+<span id="cb146-2"><a href="#cb146-2" tabindex="-1"></a>chimps[,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>#&gt; [1] &quot;C01&quot; &quot;C02&quot; &quot;C03&quot; &quot;C04&quot; &quot;C05&quot;</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a><span class="co"># get the value in row 3 for the column &quot;dominance_rank&quot;</span></span>
+<span id="cb148-2"><a href="#cb148-2" tabindex="-1"></a>chimps[<span class="dv">3</span>, <span class="st">&quot;dominance_rank&quot;</span>]</span></code></pre></div>
 <pre><code>#&gt; [1] 2</code></pre>
 <p>Add a row to a dataframe:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" tabindex="-1"></a><span class="co"># add a new chimp that is born into the population</span></span>
-<span id="cb146-2"><a href="#cb146-2" tabindex="-1"></a>new_row <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;CO6&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
-<span id="cb146-3"><a href="#cb146-3" tabindex="-1"></a>chimps <span class="ot">&lt;-</span> <span class="fu">rbind</span>(chimps,new_row)</span>
-<span id="cb146-4"><a href="#cb146-4" tabindex="-1"></a>chimps</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a><span class="co"># add a new chimp that is born into the population</span></span>
+<span id="cb150-2"><a href="#cb150-2" tabindex="-1"></a>new_row <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;CO6&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">1</span>)</span>
+<span id="cb150-3"><a href="#cb150-3" tabindex="-1"></a>chimps <span class="ot">&lt;-</span> <span class="fu">rbind</span>(chimps,new_row)</span>
+<span id="cb150-4"><a href="#cb150-4" tabindex="-1"></a>chimps</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate
 #&gt; 1 C01   M        22              1           3.2
 #&gt; 2 C02   M        15              3           5.8
@@ -2500,9 +2521,9 @@ with column index:</p>
 #&gt; 5 C05   M        31              4           2.9
 #&gt; 6 CO6   F         0              6           1.0</code></pre>
 <p>Add a column to a dataframe:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" tabindex="-1"></a><span class="co"># calculate a &quot;social capital&quot; score based on rank and grooming</span></span>
-<span id="cb148-2"><a href="#cb148-2" tabindex="-1"></a>chimps<span class="sc">$</span>social_capital <span class="ot">&lt;-</span> chimps<span class="sc">$</span>grooming_rate <span class="sc">/</span> chimps<span class="sc">$</span>dominance_rank</span>
-<span id="cb148-3"><a href="#cb148-3" tabindex="-1"></a>chimps</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" tabindex="-1"></a><span class="co"># calculate a &quot;social capital&quot; score based on rank and grooming</span></span>
+<span id="cb152-2"><a href="#cb152-2" tabindex="-1"></a>chimps<span class="sc">$</span>social_capital <span class="ot">&lt;-</span> chimps<span class="sc">$</span>grooming_rate <span class="sc">/</span> chimps<span class="sc">$</span>dominance_rank</span>
+<span id="cb152-3"><a href="#cb152-3" tabindex="-1"></a>chimps</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate social_capital
 #&gt; 1 C01   M        22              1           3.2      3.2000000
 #&gt; 2 C02   M        15              3           5.8      1.9333333
@@ -2515,187 +2536,186 @@ an agent needs to choose which agents of a certain type to interact
 with. First you’d subset to the set of agents to that type, then you’d
 run a computation on those agents’ state variable to decide which agent
 to interact with and how.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" tabindex="-1"></a><span class="co"># select all agents of the type &quot;female&quot;</span></span>
-<span id="cb150-2"><a href="#cb150-2" tabindex="-1"></a>females <span class="ot">&lt;-</span> <span class="fu">subset</span>(chimps,sex <span class="sc">==</span> <span class="st">&quot;F&quot;</span>)</span>
-<span id="cb150-3"><a href="#cb150-3" tabindex="-1"></a>females</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" tabindex="-1"></a><span class="co"># select all agents of the type &quot;female&quot;</span></span>
+<span id="cb154-2"><a href="#cb154-2" tabindex="-1"></a>females <span class="ot">&lt;-</span> <span class="fu">subset</span>(chimps,sex <span class="sc">==</span> <span class="st">&quot;F&quot;</span>)</span>
+<span id="cb154-3"><a href="#cb154-3" tabindex="-1"></a>females</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate social_capital
 #&gt; 3 C03   F        18              2           6.1      3.0500000
 #&gt; 4 C04   F         9              5           4.4      0.8800000
 #&gt; 6 CO6   F         0              6           1.0      0.1666667</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" tabindex="-1"></a><span class="co"># this is another way to do the same thing</span></span>
-<span id="cb152-2"><a href="#cb152-2" tabindex="-1"></a>females <span class="ot">&lt;-</span> chimps[chimps<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;F&quot;</span>, ]</span>
-<span id="cb152-3"><a href="#cb152-3" tabindex="-1"></a>females</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" tabindex="-1"></a><span class="co"># this is another way to do the same thing</span></span>
+<span id="cb156-2"><a href="#cb156-2" tabindex="-1"></a>females <span class="ot">&lt;-</span> chimps[chimps<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;F&quot;</span>, ]</span>
+<span id="cb156-3"><a href="#cb156-3" tabindex="-1"></a>females</span></code></pre></div>
 <pre><code>#&gt;    id sex age_years dominance_rank grooming_rate social_capital
 #&gt; 3 C03   F        18              2           6.1      3.0500000
 #&gt; 4 C04   F         9              5           4.4      0.8800000
 #&gt; 6 CO6   F         0              6           1.0      0.1666667</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" tabindex="-1"></a><span class="co"># example computation:</span></span>
-<span id="cb154-2"><a href="#cb154-2" tabindex="-1"></a><span class="co"># agent C01 (with rank = 1) chooses the closest-ranking female to groom</span></span>
-<span id="cb154-3"><a href="#cb154-3" tabindex="-1"></a>agent_rank <span class="ot">&lt;-</span> chimps[<span class="dv">1</span>,<span class="st">&quot;dominance_rank&quot;</span>]</span>
-<span id="cb154-4"><a href="#cb154-4" tabindex="-1"></a>females<span class="sc">$</span>rank_diff <span class="ot">&lt;-</span> agent_rank <span class="sc">-</span> females<span class="sc">$</span>dominance_rank</span>
-<span id="cb154-5"><a href="#cb154-5" tabindex="-1"></a>closest <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(females<span class="sc">$</span>rank_diff))</span>
-<span id="cb154-6"><a href="#cb154-6" tabindex="-1"></a>offer_grooming_to <span class="ot">&lt;-</span> females[closest,<span class="st">&quot;id&quot;</span>]</span>
-<span id="cb154-7"><a href="#cb154-7" tabindex="-1"></a>offer_grooming_to</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" tabindex="-1"></a><span class="co"># example computation:</span></span>
+<span id="cb158-2"><a href="#cb158-2" tabindex="-1"></a><span class="co"># agent C01 (with rank = 1) chooses the closest-ranking female to groom</span></span>
+<span id="cb158-3"><a href="#cb158-3" tabindex="-1"></a>agent_rank <span class="ot">&lt;-</span> chimps[<span class="dv">1</span>,<span class="st">&quot;dominance_rank&quot;</span>]</span>
+<span id="cb158-4"><a href="#cb158-4" tabindex="-1"></a>females<span class="sc">$</span>rank_diff <span class="ot">&lt;-</span> agent_rank <span class="sc">-</span> females<span class="sc">$</span>dominance_rank</span>
+<span id="cb158-5"><a href="#cb158-5" tabindex="-1"></a>closest <span class="ot">&lt;-</span> <span class="fu">which.min</span>(<span class="fu">abs</span>(females<span class="sc">$</span>rank_diff))</span>
+<span id="cb158-6"><a href="#cb158-6" tabindex="-1"></a>offer_grooming_to <span class="ot">&lt;-</span> females[closest,<span class="st">&quot;id&quot;</span>]</span>
+<span id="cb158-7"><a href="#cb158-7" tabindex="-1"></a>offer_grooming_to</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;C03&quot;</code></pre>
 <p>There are lots of ways to manipulate dataframes. These all fall under
 the topic of “data processing”, which is outside the scope of the
-agent-based modelling workshop. In this workshop we’ll stick to using
+agent-based modeling workshop. In this workshop we’ll stick to using
 base R only, but lots of R users like to use the tidyverse packages for
 data processing and you can definitely integrate your favorite data
 processing techniques into the agent-based models you code.</p>
 </div>
 <div id="saving-simulation-history-to-a-data-frame" class="section level3">
 <h3>Saving simulation history to a data frame</h3>
-<p>You can create a data frame that holds the result of each tick, where
-each row corresponds to one tick. I always name this dataframe
-<code>history</code> and I save everything that happened in the
-simulation here, so that I have a complete record of simulation events
-when I go to analyze it later. Here’s a toy simulation with three
-variables that change on every tick: <code>agentA</code>,
-<code>agentB</code>, and <code>interation_type</code>.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" tabindex="-1"></a><span class="co"># remove the seed setting from earlier</span></span>
-<span id="cb156-2"><a href="#cb156-2" tabindex="-1"></a><span class="co"># so this simulation with stochastically vary each time you run it</span></span>
-<span id="cb156-3"><a href="#cb156-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="cn">NULL</span>)</span>
-<span id="cb156-4"><a href="#cb156-4" tabindex="-1"></a></span>
-<span id="cb156-5"><a href="#cb156-5" tabindex="-1"></a><span class="co"># set the basic parameters</span></span>
-<span id="cb156-6"><a href="#cb156-6" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb156-7"><a href="#cb156-7" tabindex="-1"></a>N_agents <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb156-8"><a href="#cb156-8" tabindex="-1"></a>agents <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>N_agents</span>
-<span id="cb156-9"><a href="#cb156-9" tabindex="-1"></a></span>
-<span id="cb156-10"><a href="#cb156-10" tabindex="-1"></a><span class="co"># define two possible interaction types</span></span>
-<span id="cb156-11"><a href="#cb156-11" tabindex="-1"></a>interaction_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;groom&quot;</span>,<span class="st">&quot;fight&quot;</span>)</span>
-<span id="cb156-12"><a href="#cb156-12" tabindex="-1"></a>p_groom <span class="ot">&lt;-</span> <span class="fl">0.8</span>  <span class="co"># set the probability of grooming</span></span>
-<span id="cb156-13"><a href="#cb156-13" tabindex="-1"></a>p_fight <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_groom  <span class="co"># compute the probability of fighting</span></span>
-<span id="cb156-14"><a href="#cb156-14" tabindex="-1"></a></span>
-<span id="cb156-15"><a href="#cb156-15" tabindex="-1"></a><span class="co"># initialize a dataframe called &quot;history&quot; with 3 columns</span></span>
-<span id="cb156-16"><a href="#cb156-16" tabindex="-1"></a>history <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;agentA&quot;</span><span class="ot">=</span><span class="fu">integer</span>(),</span>
-<span id="cb156-17"><a href="#cb156-17" tabindex="-1"></a>                      <span class="st">&quot;agentB&quot;</span><span class="ot">=</span><span class="fu">integer</span>(),</span>
-<span id="cb156-18"><a href="#cb156-18" tabindex="-1"></a>                      <span class="st">&quot;interaction_type&quot;</span><span class="ot">=</span><span class="fu">character</span>())</span>
-<span id="cb156-19"><a href="#cb156-19" tabindex="-1"></a></span>
-<span id="cb156-20"><a href="#cb156-20" tabindex="-1"></a><span class="co"># loop over ticks</span></span>
-<span id="cb156-21"><a href="#cb156-21" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
-<span id="cb156-22"><a href="#cb156-22" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;---------------------------&quot;</span>,<span class="at">quote=</span>F)  <span class="co"># make the output easy to read</span></span>
-<span id="cb156-23"><a href="#cb156-23" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;tick:&quot;</span>,t),<span class="at">quote=</span>F)</span>
-<span id="cb156-24"><a href="#cb156-24" tabindex="-1"></a>    </span>
-<span id="cb156-25"><a href="#cb156-25" tabindex="-1"></a>    <span class="co"># randomly choose two agents to interact on this tick</span></span>
-<span id="cb156-26"><a href="#cb156-26" tabindex="-1"></a>    <span class="co"># (don&#39;t use replace = T because you might choose the same agent twice!)</span></span>
-<span id="cb156-27"><a href="#cb156-27" tabindex="-1"></a>    two_agents <span class="ot">&lt;-</span> <span class="fu">sample</span>(agents,<span class="at">replace=</span>F)</span>
-<span id="cb156-28"><a href="#cb156-28" tabindex="-1"></a>    </span>
-<span id="cb156-29"><a href="#cb156-29" tabindex="-1"></a>    <span class="co"># randomly choose the outcome of their interaction</span></span>
-<span id="cb156-30"><a href="#cb156-30" tabindex="-1"></a>    outcome <span class="ot">&lt;-</span> <span class="fu">sample</span>(interaction_types,<span class="dv">1</span>,<span class="at">p=</span><span class="fu">c</span>(p_groom,p_fight))</span>
-<span id="cb156-31"><a href="#cb156-31" tabindex="-1"></a>    </span>
-<span id="cb156-32"><a href="#cb156-32" tabindex="-1"></a>    <span class="co"># save what happened in this tick to a new row in history</span></span>
-<span id="cb156-33"><a href="#cb156-33" tabindex="-1"></a>    new_row <span class="ot">&lt;-</span> <span class="fu">list</span>(two_agents[<span class="dv">1</span>],two_agents[<span class="dv">2</span>],outcome)</span>
-<span id="cb156-34"><a href="#cb156-34" tabindex="-1"></a>    history[t,] <span class="ot">&lt;-</span> new_row</span>
-<span id="cb156-35"><a href="#cb156-35" tabindex="-1"></a>    </span>
-<span id="cb156-36"><a href="#cb156-36" tabindex="-1"></a>    <span class="co"># print everything that happened on this tick</span></span>
-<span id="cb156-37"><a href="#cb156-37" tabindex="-1"></a>    <span class="co"># this is useful for debugging!</span></span>
-<span id="cb156-38"><a href="#cb156-38" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;the two agents are:&quot;</span>,two_agents[<span class="dv">1</span>],<span class="st">&quot;and&quot;</span>,two_agents[<span class="dv">2</span>]),<span class="at">quote=</span>F)</span>
-<span id="cb156-39"><a href="#cb156-39" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;interaction type:&quot;</span>,outcome),<span class="at">quote=</span>F)</span>
-<span id="cb156-40"><a href="#cb156-40" tabindex="-1"></a>    </span>
-<span id="cb156-41"><a href="#cb156-41" tabindex="-1"></a>}</span></code></pre></div>
+<p>One common thing to do in agent-based modeling is to save everything
+that happened during one run of the model to a dataframe. In this case,
+you create a dataframe that holds the result of each tick, where each
+row corresponds to one tick. I always name this dataframe
+<code>history</code> and I save everything that happened in the run
+here, so that I have a complete record of simulation events when I go to
+analyze it later. Here’s a toy simulation with three variables that
+change on every tick: <code>agentA</code>, <code>agentB</code>, and
+<code>interation_type</code>.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" tabindex="-1"></a><span class="co"># remove the seed setting from earlier</span></span>
+<span id="cb160-2"><a href="#cb160-2" tabindex="-1"></a><span class="co"># so this simulation with stochastically vary each time you run it</span></span>
+<span id="cb160-3"><a href="#cb160-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="cn">NULL</span>)</span>
+<span id="cb160-4"><a href="#cb160-4" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="#cb160-5" tabindex="-1"></a><span class="co"># set the basic parameters</span></span>
+<span id="cb160-6"><a href="#cb160-6" tabindex="-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb160-7"><a href="#cb160-7" tabindex="-1"></a>N_agents <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb160-8"><a href="#cb160-8" tabindex="-1"></a>agents <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>N_agents</span>
+<span id="cb160-9"><a href="#cb160-9" tabindex="-1"></a></span>
+<span id="cb160-10"><a href="#cb160-10" tabindex="-1"></a><span class="co"># define two possible interaction types</span></span>
+<span id="cb160-11"><a href="#cb160-11" tabindex="-1"></a>interaction_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;groom&quot;</span>,<span class="st">&quot;fight&quot;</span>)</span>
+<span id="cb160-12"><a href="#cb160-12" tabindex="-1"></a>p_groom <span class="ot">&lt;-</span> <span class="fl">0.8</span>  <span class="co"># set the probability of grooming</span></span>
+<span id="cb160-13"><a href="#cb160-13" tabindex="-1"></a>p_fight <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_groom  <span class="co"># compute the probability of fighting</span></span>
+<span id="cb160-14"><a href="#cb160-14" tabindex="-1"></a></span>
+<span id="cb160-15"><a href="#cb160-15" tabindex="-1"></a><span class="co"># initialize a dataframe called &quot;history&quot; with 3 columns</span></span>
+<span id="cb160-16"><a href="#cb160-16" tabindex="-1"></a>history <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;agentA&quot;</span><span class="ot">=</span><span class="fu">integer</span>(),</span>
+<span id="cb160-17"><a href="#cb160-17" tabindex="-1"></a>                      <span class="st">&quot;agentB&quot;</span><span class="ot">=</span><span class="fu">integer</span>(),</span>
+<span id="cb160-18"><a href="#cb160-18" tabindex="-1"></a>                      <span class="st">&quot;interaction_type&quot;</span><span class="ot">=</span><span class="fu">character</span>())</span>
+<span id="cb160-19"><a href="#cb160-19" tabindex="-1"></a></span>
+<span id="cb160-20"><a href="#cb160-20" tabindex="-1"></a><span class="co"># loop over ticks</span></span>
+<span id="cb160-21"><a href="#cb160-21" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ticks) {</span>
+<span id="cb160-22"><a href="#cb160-22" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;---------------------------&quot;</span>,<span class="at">quote=</span>F)  <span class="co"># make the output easy to read</span></span>
+<span id="cb160-23"><a href="#cb160-23" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;tick:&quot;</span>,t),<span class="at">quote=</span>F)</span>
+<span id="cb160-24"><a href="#cb160-24" tabindex="-1"></a>    </span>
+<span id="cb160-25"><a href="#cb160-25" tabindex="-1"></a>    <span class="co"># randomly choose two agents to interact on this tick</span></span>
+<span id="cb160-26"><a href="#cb160-26" tabindex="-1"></a>    <span class="co"># (don&#39;t use replace = T because you might choose the same agent twice!)</span></span>
+<span id="cb160-27"><a href="#cb160-27" tabindex="-1"></a>    two_agents <span class="ot">&lt;-</span> <span class="fu">sample</span>(agents,<span class="at">replace=</span>F)</span>
+<span id="cb160-28"><a href="#cb160-28" tabindex="-1"></a>    </span>
+<span id="cb160-29"><a href="#cb160-29" tabindex="-1"></a>    <span class="co"># randomly choose the outcome of their interaction</span></span>
+<span id="cb160-30"><a href="#cb160-30" tabindex="-1"></a>    outcome <span class="ot">&lt;-</span> <span class="fu">sample</span>(interaction_types,<span class="dv">1</span>,<span class="at">p=</span><span class="fu">c</span>(p_groom,p_fight))</span>
+<span id="cb160-31"><a href="#cb160-31" tabindex="-1"></a>    </span>
+<span id="cb160-32"><a href="#cb160-32" tabindex="-1"></a>    <span class="co"># save what happened in this tick to a new row in history</span></span>
+<span id="cb160-33"><a href="#cb160-33" tabindex="-1"></a>    new_row <span class="ot">&lt;-</span> <span class="fu">list</span>(two_agents[<span class="dv">1</span>],two_agents[<span class="dv">2</span>],outcome)</span>
+<span id="cb160-34"><a href="#cb160-34" tabindex="-1"></a>    history[t,] <span class="ot">&lt;-</span> new_row</span>
+<span id="cb160-35"><a href="#cb160-35" tabindex="-1"></a>    </span>
+<span id="cb160-36"><a href="#cb160-36" tabindex="-1"></a>    <span class="co"># print everything that happened on this tick</span></span>
+<span id="cb160-37"><a href="#cb160-37" tabindex="-1"></a>    <span class="co"># this is useful for debugging!</span></span>
+<span id="cb160-38"><a href="#cb160-38" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;the two agents are:&quot;</span>,two_agents[<span class="dv">1</span>],<span class="st">&quot;and&quot;</span>,two_agents[<span class="dv">2</span>]),<span class="at">quote=</span>F)</span>
+<span id="cb160-39"><a href="#cb160-39" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;interaction type:&quot;</span>,outcome),<span class="at">quote=</span>F)</span>
+<span id="cb160-40"><a href="#cb160-40" tabindex="-1"></a>    </span>
+<span id="cb160-41"><a href="#cb160-41" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>#&gt; [1] ---------------------------
 #&gt; [1] tick: 1    
 #&gt; [1] the two agents are: 2 and 3
-#&gt; [1] interaction type: fight
+#&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 2    
-#&gt; [1] the two agents are: 4 and 3
+#&gt; [1] the two agents are: 2 and 5
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 3    
-#&gt; [1] the two agents are: 1 and 5
-#&gt; [1] interaction type: fight
+#&gt; [1] the two agents are: 2 and 5
+#&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 4    
-#&gt; [1] the two agents are: 4 and 1
+#&gt; [1] the two agents are: 5 and 3
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 5    
-#&gt; [1] the two agents are: 5 and 3
+#&gt; [1] the two agents are: 2 and 3
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 6    
-#&gt; [1] the two agents are: 5 and 3
+#&gt; [1] the two agents are: 2 and 3
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 7    
-#&gt; [1] the two agents are: 1 and 5
+#&gt; [1] the two agents are: 4 and 2
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 8    
-#&gt; [1] the two agents are: 3 and 1
-#&gt; [1] interaction type: fight
+#&gt; [1] the two agents are: 3 and 5
+#&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 9    
-#&gt; [1] the two agents are: 5 and 1
+#&gt; [1] the two agents are: 3 and 5
 #&gt; [1] interaction type: groom
 #&gt; [1] ---------------------------
 #&gt; [1] tick: 10   
-#&gt; [1] the two agents are: 4 and 1
-#&gt; [1] interaction type: fight</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" tabindex="-1"></a><span class="co"># look at the history dataframe</span></span>
-<span id="cb158-2"><a href="#cb158-2" tabindex="-1"></a>history</span></code></pre></div>
+#&gt; [1] the two agents are: 2 and 3
+#&gt; [1] interaction type: groom</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" tabindex="-1"></a><span class="co"># look at the history dataframe</span></span>
+<span id="cb162-2"><a href="#cb162-2" tabindex="-1"></a>history</span></code></pre></div>
 <pre><code>#&gt;    agentA agentB interaction_type
-#&gt; 1       2      3            fight
-#&gt; 2       4      3            groom
-#&gt; 3       1      5            fight
-#&gt; 4       4      1            groom
-#&gt; 5       5      3            groom
-#&gt; 6       5      3            groom
-#&gt; 7       1      5            groom
-#&gt; 8       3      1            fight
-#&gt; 9       5      1            groom
-#&gt; 10      4      1            fight</code></pre>
+#&gt; 1       2      3            groom
+#&gt; 2       2      5            groom
+#&gt; 3       2      5            groom
+#&gt; 4       5      3            groom
+#&gt; 5       2      3            groom
+#&gt; 6       2      3            groom
+#&gt; 7       4      2            groom
+#&gt; 8       3      5            groom
+#&gt; 9       3      5            groom
+#&gt; 10      2      3            groom</code></pre>
 </div>
 <div id="saving-your-data-frame-to-a-file" class="section level3">
 <h3>Saving your data frame to a file</h3>
-<p>In my own agent-based modelling workflow, I like to separate the act
+<p>In my own agent-based modeling workflow, I like to separate the act
 of running the models from the act of analyzing the output of those
 models. I do this by saving the result of each simulation run in an
 Rdata file. Then, when I go to analyze the agent-based model, I load the
 Rdata files back into R and write scripts that extract the data from
-them for analysis. Saving dataframes in the Rdata format keeps saves
-them as dataframes. The alternative is to save each dataframe as a csv
+them for analysis. Saving dataframes in the Rdata format keeps them
+saved as dataframes. The alternative is to save each dataframe as a csv
 file, but that can create annoying formatting discrepancies as the data
 is converted to and from a csv file. I also like to do stuff like save
 an entire matrix (ex: representing the agent’s memory at each tick) as
 one entry in a dataframe and csvs just can’t handle that.</p>
 <p>Here’s how to save a dataframe as an Rdata file:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" tabindex="-1"></a><span class="fu">save</span>(history, <span class="at">file =</span> <span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" tabindex="-1"></a><span class="fu">save</span>(history, <span class="at">file =</span> <span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
 <p>And here’s how to load it back into R:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
 <p><strong>Note:</strong> If you’re running this file in RStudio right
 now and want to create the file above, remove “eval=FALSE” from the top
 of each code chunk. Then search for “filename.RData” on your computer -
 or look in your working directory.</p>
 <p>You can also save multiple dataframes to the same Rdata file. Just
 enter the name of each dataframe like this:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" tabindex="-1"></a><span class="fu">save</span>(dataframe1, dataframe2, dataframe3, <span class="at">file =</span> <span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" tabindex="-1"></a><span class="fu">save</span>(dataframe1, dataframe2, dataframe3, <span class="at">file =</span> <span class="st">&quot;filename.RData&quot;</span>)</span></code></pre></div>
 <p>It’s good practice to give the Rdata file a descriptive and
 unambiguous name, so that you know exactly which run of which ABM the
 Rdata file is for. You can build a descriptive filename directly in your
 R code so that it automatically saves the Rdata file with that name.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" tabindex="-1"></a><span class="co"># let&#39;s say &quot;history&quot; came from this model and run number</span></span>
-<span id="cb163-2"><a href="#cb163-2" tabindex="-1"></a>model_name <span class="ot">&lt;-</span> <span class="st">&quot;model1&quot;</span></span>
-<span id="cb163-3"><a href="#cb163-3" tabindex="-1"></a>run <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb163-4"><a href="#cb163-4" tabindex="-1"></a></span>
-<span id="cb163-5"><a href="#cb163-5" tabindex="-1"></a><span class="co"># build the filename from all of the parameters settings used in this ABM</span></span>
-<span id="cb163-6"><a href="#cb163-6" tabindex="-1"></a><span class="co"># save this to a new variable called &quot;filename&quot;</span></span>
-<span id="cb163-7"><a href="#cb163-7" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste0</span>(model_name,<span class="st">&quot;-run&quot;</span>,run,<span class="st">&quot;-popsize&quot;</span>,N_agents,<span class="st">&quot;-p_groom&quot;</span>,p_groom,<span class="st">&quot;.Rdata&quot;</span>)</span>
-<span id="cb163-8"><a href="#cb163-8" tabindex="-1"></a></span>
-<span id="cb163-9"><a href="#cb163-9" tabindex="-1"></a><span class="co"># take a look at the filename</span></span>
-<span id="cb163-10"><a href="#cb163-10" tabindex="-1"></a>filename</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" tabindex="-1"></a><span class="co"># let&#39;s say &quot;history&quot; came from this model and run number</span></span>
+<span id="cb167-2"><a href="#cb167-2" tabindex="-1"></a>model_name <span class="ot">&lt;-</span> <span class="st">&quot;model1&quot;</span></span>
+<span id="cb167-3"><a href="#cb167-3" tabindex="-1"></a>run <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb167-4"><a href="#cb167-4" tabindex="-1"></a></span>
+<span id="cb167-5"><a href="#cb167-5" tabindex="-1"></a><span class="co"># build the filename from all of the parameters settings used in this ABM</span></span>
+<span id="cb167-6"><a href="#cb167-6" tabindex="-1"></a><span class="co"># save this to a new variable called &quot;filename&quot;</span></span>
+<span id="cb167-7"><a href="#cb167-7" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste0</span>(model_name,<span class="st">&quot;-run&quot;</span>,run,<span class="st">&quot;-popsize&quot;</span>,N_agents,<span class="st">&quot;-p_groom&quot;</span>,p_groom,<span class="st">&quot;.Rdata&quot;</span>)</span>
+<span id="cb167-8"><a href="#cb167-8" tabindex="-1"></a></span>
+<span id="cb167-9"><a href="#cb167-9" tabindex="-1"></a><span class="co"># take a look at the filename</span></span>
+<span id="cb167-10"><a href="#cb167-10" tabindex="-1"></a>filename</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;model1-run5-popsize5-p_groom0.8.Rdata&quot;</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" tabindex="-1"></a><span class="co"># then use that filename in save() like this</span></span>
-<span id="cb165-2"><a href="#cb165-2" tabindex="-1"></a><span class="fu">save</span>(history, <span class="at">file =</span> filename)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" tabindex="-1"></a><span class="co"># then use that filename in save() like this</span></span>
+<span id="cb169-2"><a href="#cb169-2" tabindex="-1"></a><span class="fu">save</span>(history, <span class="at">file =</span> filename)</span></code></pre></div>
 <blockquote>
 <p><strong>Key idea:</strong> You can use data frames to save all of
-your agent’s state variables in one place. Create one big history data
-frame to save everything that happened on each tick of the simulation
-and save it with an unambiguous filename. Make sure you include all of
-the behavior from the ABM that you plan to analyze in this history
-dataframe.</p>
+your agent’s state variables in one place. You can also save all of the
+events that ocurred in one run of the model to a data frame.</p>
 </blockquote>
 <hr />
 </div>
@@ -2773,16 +2793,11 @@ dataframe.</p>
 </table>
 <hr />
 </div>
-<div id="additional-resources" class="section level1">
-<h1>Additional resources</h1>
-<hr />
-</div>
-<div id="cite-this-document" class="section level1">
-<h1>Cite this document</h1>
-<p>Please cite this document if you found it useful:</p>
+<div id="how-to-cite-this-document" class="section level1">
+<h1>How to cite this document</h1>
 <blockquote>
 <p>Ferdinand, V.A. (2026). <em>R for coding agent-based models: a survey
-of the basic building blocks.</em> <a href="https://github.com/vanferdi/agent-based-modeling/R-tutorial" class="uri">https://github.com/vanferdi/agent-based-modeling/R-tutorial</a></p>
+of the basic building blocks.</em> <a href="https://vanferdi.github.io/R-ABM-tutorial" class="uri">https://vanferdi.github.io/R-ABM-tutorial</a></p>
 </blockquote>
 <p>This document was created for <em>The beginner’s guide to agent-based
 modeling for animal behavior</em> workshop, held at the Animal Behavior
